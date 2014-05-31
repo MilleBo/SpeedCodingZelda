@@ -23,7 +23,8 @@ public enum Input
     None,
     Enter,
     A,
-    S
+    S,
+    Select
 }
 
 public enum Direction
@@ -48,7 +49,7 @@ public enum ItemSlot
     B
 }
 
-public enum WindowMessagePosition
+public enum WindowPosition
 {
     Up,
     Down

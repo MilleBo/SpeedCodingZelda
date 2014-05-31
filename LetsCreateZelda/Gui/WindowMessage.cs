@@ -14,7 +14,7 @@ namespace LetsCreateZelda.Gui
         private List<string> _text;  
         private int _currentIndex; 
 
-        public WindowMessage(string text, WindowMessagePosition position = WindowMessagePosition.Down,
+        public WindowMessage(string text, WindowPosition position = WindowPosition.Down,
                              bool slowText = false)
         {
             Height = 40;
@@ -22,11 +22,11 @@ namespace LetsCreateZelda.Gui
 
             switch (position)
             {
-                    case WindowMessagePosition.Up:
+                    case WindowPosition.Up:
                     Position = new Vector2(5,5);
                     break; 
 
-                    case WindowMessagePosition.Down:
+                    case WindowPosition.Down:
                     Position = new Vector2(5,85);
                     break; 
             }

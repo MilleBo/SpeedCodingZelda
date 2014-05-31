@@ -4,21 +4,29 @@ using System.Linq;
 using System.Text;
 using LetsCreateZelda.GameEvent;
 using LetsCreateZelda.Manager;
+using LetsCreateZelda.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using OpenTK.Graphics.OpenGL;
 
 namespace LetsCreateZelda.Components
 {
     class PlayerInput : Component
     {
+
+        private ManagerScreen _managerScreen; 
+
         public override ComponentType ComponentType
         {
             get { return ComponentType.PlayerInput; }
         }
 
-        public PlayerInput()
+
+
+        public PlayerInput(ManagerScreen managerScreen)
         {
             ManagerInput.FireNewInput += ManagerInput_FireNewInput;
+            _managerScreen = managerScreen;
         }
 
         void ManagerInput_FireNewInput(object sender, MyEventArgs.NewInputEventArgs e)
@@ -68,6 +76,9 @@ namespace LetsCreateZelda.Components
                         //ManagerEvents.AddEvents(new List<IGameEvent> {new GameEventMessage("I just started a new event with my s button")});
                         equipment = GetComponent<Equipment>(ComponentType.Items); 
                         equipment.FireItem(ItemSlot.B);
+                        break; 
+                    case Input.Select:
+                        _managerScreen.LoadNewScreen(new ScreenMainMenu(_managerScreen,GetComponent<Stats>(ComponentType.Stats)));
                         break; 
                                                 
                     default:
