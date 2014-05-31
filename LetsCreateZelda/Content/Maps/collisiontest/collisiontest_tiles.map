@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ArrayOfTileGraphic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TileGraphic>
+    <XPos>4</XPos>
+    <YPos>13</YPos>
+    <ManagerCamera />
+    <ZPos>0</ZPos>
+    <TileFrames>
+      <TileFrame>
+        <TextureXPos>-1</TextureXPos>
+        <TextureYPos>-17</TextureYPos>
+      </TileFrame>
+    </TileFrames>
+    <AnimationSpeed>0</AnimationSpeed>
+    <TextureName>overworld_tiles</TextureName>
+  </TileGraphic>
+  <TileGraphic>
+    <XPos>5</XPos>
+    <YPos>13</YPos>
+    <ManagerCamera />
+    <ZPos>0</ZPos>
+    <TileFrames>
+      <TileFrame>
+        <TextureXPos>-1</TextureXPos>
+        <TextureYPos>-17</TextureYPos>
+      </TileFrame>
+    </TileFrames>
+    <AnimationSpeed>0</AnimationSpeed>
+    <TextureName>overworld_tiles</TextureName>
+  </TileGraphic>
+</ArrayOfTileGraphic>
