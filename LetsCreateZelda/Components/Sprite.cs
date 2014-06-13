@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreateZelda.Components
 {
-    class Sprite : Component
+    public class Sprite : Component
     {
         private Texture2D _texture;
         public int Width { get; private set; }

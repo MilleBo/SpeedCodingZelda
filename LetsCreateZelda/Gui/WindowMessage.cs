@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace LetsCreateZelda.Gui
 {
-    class WindowMessage : Window
+    public class WindowMessage : Window
     {
         private List<string> _text;  
         private int _currentIndex; 

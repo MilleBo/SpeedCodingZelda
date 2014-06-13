@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LetsCreateZelda.Manager;
+using LetsCreateZelda.Map;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -16,7 +17,7 @@ namespace LetsCreateZelda.Components.Items
         public bool Active { get; set; }
 
         public abstract void Action();
-        public virtual void LoadContent(Equipment owner, ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera)
+        public virtual void LoadContent(Equipment owner, ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera, Entities entities)
         {
             Owner = owner; 
         }

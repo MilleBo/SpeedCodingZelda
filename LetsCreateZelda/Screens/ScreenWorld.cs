@@ -46,9 +46,9 @@ namespace LetsCreateZelda.Screens
             player.AddComponent(new Sprite(content.Load<Texture2D>("link_full"), 16, 16, new Vector2(50, 50)));
             player.AddComponent(new PlayerInput(ManagerScreen));
             player.AddComponent(new Animation(16, 16,2));
-            player.AddComponent(new Collision(_managerMap));
+            player.AddComponent(new Collision(_managerMap,_entities));
             player.AddComponent(new Camera(_managerCamera));
-            player.AddComponent(new Equipment(content,_managerMap,_managerCamera));
+            player.AddComponent(new Equipment(content,_managerMap,_managerCamera,_entities));
             player.GetComponent<Equipment>(ComponentType.Items).AddItem(new Boomerang());
             player.GetComponent<Equipment>(ComponentType.Items).AddItem(new Sword(_entities));
             player.GetComponent<Equipment>(ComponentType.Items).EquipItemInSlot(1,ItemSlot.A);
@@ -83,7 +83,18 @@ namespace LetsCreateZelda.Screens
 
             
             //_entities.AddEntity(testNPC);
-            
+            //Script test!
+            var testEnemy = new BaseObject { Id = string.Format("enemy_{0}", "script") };
+            testEnemy.AddComponent(new Sprite(content.Load<Texture2D>("Octorok"), 16, 16, new Vector2(50 + ManagerFunction.Random(10, 20), 50 + ManagerFunction.Random(10, 20))));
+            testEnemy.AddComponent(new AIMovementRandom(1000, 0.5f));
+            testEnemy.AddComponent(new Animation(16, 16, 2));
+            testEnemy.AddComponent(new Collision(_managerMap,_entities));
+            testEnemy.AddComponent(new Octorok(player, content.Load<Texture2D>("Octorok_bullet"), _managerMap,_entities));
+            testEnemy.AddComponent(new Camera(_managerCamera));
+            testEnemy.AddComponent(new Damage(_entities));
+            testEnemy.AddComponent(FactoryStats.GetStats("Octorok"));
+            testEnemy.AddComponent(new Script("script_time_test"));
+            _entities.AddEntity(testEnemy);
 
         
 

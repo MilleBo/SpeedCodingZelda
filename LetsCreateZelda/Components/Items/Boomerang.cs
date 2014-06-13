@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LetsCreateZelda.Manager;
+using LetsCreateZelda.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -49,14 +50,13 @@ namespace LetsCreateZelda.Components.Items
             _counter = 0;
         }
 
-        public override void LoadContent(Equipment owner, ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera)
+        public override void LoadContent(Equipment owner, ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera, Entities entities)
         {
-            base.LoadContent(owner,content,managerMap,managerCamera);
+            base.LoadContent(owner,content,managerMap,managerCamera,entities);
             AddComponent(new Sprite(content.Load<Texture2D>("boomerang"),16,16,new Vector2(0,0)));
-            AddComponent(new Collision(managerMap));
+            AddComponent(new Collision(managerMap,entities));
             AddComponent(new Animation(16,16,3));
-            AddComponent(new Camera(managerCamera));
-            
+            AddComponent(new Camera(managerCamera));           
         }
 
         public override void Update(double gameTime)
@@ -142,7 +142,7 @@ namespace LetsCreateZelda.Components.Items
             if (_currentState == BoomerangState.Forward)
             {
                 var collision = GetComponent<Collision>(ComponentType.Collision);
-                if(collision != null && collision.CheckCollision(new Rectangle((int) (sprite.Position.X + x), (int) (sprite.Position.Y + y),sprite.Width,sprite.Height)))
+                if(collision != null && collision.CheckCollisionWithTiles(new Rectangle((int) (sprite.Position.X + x), (int) (sprite.Position.Y + y),sprite.Width,sprite.Height)))
                 {
                     _currentState = BoomerangState.Back;
                     _counter = 0; 

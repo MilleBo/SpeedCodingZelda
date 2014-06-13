@@ -87,7 +87,7 @@ namespace LetsCreateZelda.Components
                 }             
             }
 
-            if(collision == null || !collision.CheckCollision(new Rectangle((int) (sprite.Position.X + x), (int) (sprite.Position.Y + y),sprite.Width,sprite.Height)))
+            if(collision == null || !collision.CheckCollisionWithTiles(new Rectangle((int) (sprite.Position.X + x), (int) (sprite.Position.Y + y),sprite.Width,sprite.Height)))
                 sprite.Move(x, y);
 
             Vector2 position; 

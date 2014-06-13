@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreateZelda.Gui
 {
-    abstract class Window
+    public abstract class Window
     {
         public Vector2 Position { get; set; }
         public int Width { get; set; }

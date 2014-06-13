@@ -5,12 +5,13 @@ using System.Text;
 using LetsCreateZelda.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using OpenTK.Graphics.ES11;
 using OpenTK.Platform.Windows;
 
 
 namespace LetsCreateZelda.Map
 {
-    class Entities
+    public class Entities
     {
         private List<BaseObject> _entities; 
 
@@ -69,6 +70,28 @@ namespace LetsCreateZelda.Map
                     return true;
                 }
             }
+            return false; 
+        }
+
+        public bool CheckCollision(Rectangle rectangle, string ownerId)
+        {
+            if ((string.IsNullOrWhiteSpace(ownerId)) || !ownerId.Equals("player"))
+            {
+                var player = _entities.FirstOrDefault(e => e.Id.Equals("player"));
+                if (player == null)
+                    return false;
+                return rectangle.Intersects(player.GetComponent<Sprite>(ComponentType.Sprite).Rectangle);
+            }
+
+            foreach (var entity in _entities)
+            {
+                if(!string.IsNullOrWhiteSpace(ownerId) && entity.Id.Equals("player"))
+                    continue;
+
+                if (entity.GetComponent<Sprite>(ComponentType.Sprite).Rectangle.Intersects(rectangle))
+                    return true; 
+            }
+
             return false; 
         }
     }

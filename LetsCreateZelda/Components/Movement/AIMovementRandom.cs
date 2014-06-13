@@ -72,7 +72,7 @@ namespace LetsCreateZelda.Components.Movement
 
             }
 
-           if(collision.CheckCollision(new Rectangle((int)(sprite.Position.X + x), (int)(sprite.Position.Y + y), sprite.Width, sprite.Height)))
+           if(collision.CheckCollisionWithTiles(new Rectangle((int)(sprite.Position.X + x), (int)(sprite.Position.Y + y), sprite.Width, sprite.Height)))
             {
                 ChangeDirection();
                 return; 

@@ -55,6 +55,7 @@
     <Compile Include="Components\Items\Sword.cs" />
     <Compile Include="Components\Movement\AIMovementRandom.cs" />
     <Compile Include="Components\PlayerInput.cs" />
+    <Compile Include="Components\Script.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Components\Stats.cs" />
     <Compile Include="Enums.cs" />
@@ -92,6 +93,9 @@
     <Compile Include="XMLSerialization.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
     <Reference Include="OpenTK">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\OpenTK.dll</HintPath>
     </Reference>
@@ -110,6 +114,12 @@
   <ItemGroup>
     <Content Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\WindowsGL\SDL.dll">
       <Link>SDL.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\test_advanced_script.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\test_script.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\stats.xml">

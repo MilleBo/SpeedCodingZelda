@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using LetsCreateZelda.Components.Items;
 using LetsCreateZelda.Manager;
+using LetsCreateZelda.Map;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,26 +16,28 @@ namespace LetsCreateZelda.Components
         private Dictionary<ItemSlot, Item> _equipedItem; 
         private ContentManager _content;
         private ManagerMap _managerMap;
-        private ManagerCamera _managerCamera; 
+        private ManagerCamera _managerCamera;
+        private Entities _entities;
 
         public override ComponentType ComponentType
         {
             get { return ComponentType.Items; }
         }
 
-        public Equipment(ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera)
+        public Equipment(ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera, Entities entities)
         {
             _items = new List<Item>();
             _content = content; 
             _equipedItem = new Dictionary<ItemSlot, Item>();
             _managerMap = managerMap;
-            _managerCamera = managerCamera; 
+            _managerCamera = managerCamera;
+            _entities = entities; 
         }
 
         public void AddItem(Item item)
         {
             _items.Add(item);
-            item.LoadContent(this, _content,_managerMap,_managerCamera);
+            item.LoadContent(this, _content,_managerMap,_managerCamera, _entities);
         }
 
         public void EquipItemInSlot(int id, ItemSlot itemSlot)

@@ -43,7 +43,7 @@ namespace LetsCreateZelda.Components.Enemies
                     break;
             }
 
-            if (_collision.CheckCollision(new Rectangle((int) _sprite.Position.X, (int) _sprite.Position.Y, _sprite.Width, _sprite.Height), false))
+            if (_collision.CheckCollisionWithTiles(new Rectangle((int) _sprite.Position.X, (int) _sprite.Position.Y, _sprite.Width, _sprite.Height), false))
                 Dead = true; 
 
         }

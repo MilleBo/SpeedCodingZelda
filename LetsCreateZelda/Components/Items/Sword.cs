@@ -46,9 +46,9 @@ namespace LetsCreateZelda.Components.Items
             _counter = 0; 
         }
 
-        public override void LoadContent(Equipment owner, ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera)
+        public override void LoadContent(Equipment owner, ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera, Entities entities)
         {
-            base.LoadContent(owner, content, managerMap, managerCamera);
+            base.LoadContent(owner, content, managerMap, managerCamera,entities);
             AddComponent(new Sprite(ManagerContent.LoadTexture("sword"), 16, 16, new Vector2(0, 0)));
             AddComponent(new Animation(16,16,2,100));
             AddComponent(new Camera(managerCamera));

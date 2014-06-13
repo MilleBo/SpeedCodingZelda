@@ -109,7 +109,7 @@ namespace LetsCreateZelda.Components
                 var x = _direction == Direction.Left ? -1*_speed : _direction == Direction.Right ? 1*_speed : 0;
                 var y = _direction == Direction.Up ? -1*_speed : _direction == Direction.Down ? 1*_speed : 0; 
 
-                if(collision != null && !collision.CheckCollision(new Rectangle((int) (sprite.Position.X + x) ,(int) (sprite.Position.Y + y),sprite.Width,sprite.Height)))
+                if(collision != null && !collision.CheckCollisionWithTiles(new Rectangle((int) (sprite.Position.X + x) ,(int) (sprite.Position.Y + y),sprite.Width,sprite.Height)))
                     sprite.Move(_direction, _speed);
 
                 if (_blinkCounter > 30)

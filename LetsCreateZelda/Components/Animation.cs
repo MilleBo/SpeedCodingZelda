@@ -8,7 +8,7 @@ using OpenTK.Graphics.ES20;
 
 namespace LetsCreateZelda.Components
 {
-    class Animation : Component
+    public class Animation : Component
     {
         public override ComponentType ComponentType
         {

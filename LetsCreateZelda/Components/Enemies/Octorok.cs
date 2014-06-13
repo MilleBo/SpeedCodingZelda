@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LetsCreateZelda.Manager;
+using LetsCreateZelda.Map;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreateZelda.Components.Enemies
@@ -15,16 +16,18 @@ namespace LetsCreateZelda.Components.Enemies
         private double _counter; 
         private int _cooldown;
         private Texture2D _bulletTexture;
-        private ManagerMap _map; 
+        private ManagerMap _map;
+        private Entities _entities; 
 
-        public Octorok(BaseObject player, Texture2D bulletTexture, ManagerMap map, int cooldown = 2000)
+        public Octorok(BaseObject player, Texture2D bulletTexture, ManagerMap map,  Entities entities, int cooldown = 2000)
         {
             _player = player; 
             _bullets = new List<OctorokBullet>();
             _cooldown = cooldown;
             _counter = 0;
             _bulletTexture = bulletTexture;
-            _map = map; 
+            _map = map;
+            _entities = entities; 
         }
 
 
@@ -80,7 +83,7 @@ namespace LetsCreateZelda.Components.Enemies
         private void NewBullet(Direction direction)
         {
             var sprite = GetComponent<Sprite>(ComponentType.Sprite);
-            _bullets.Add(new OctorokBullet(new Sprite(_bulletTexture,10,10,sprite.Position),new Collision(_map), _player,direction));
+            _bullets.Add(new OctorokBullet(new Sprite(_bulletTexture,10,10,sprite.Position),new Collision(_map,_entities), _player,direction));
              _counter = 0;
         }
 

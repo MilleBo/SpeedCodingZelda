@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreateZelda.Manager
 {
-    class ManagerWindow
+    public class ManagerWindow
     {
         private static readonly Dictionary<string, Window> WindowList = new Dictionary<string, Window>();
 
