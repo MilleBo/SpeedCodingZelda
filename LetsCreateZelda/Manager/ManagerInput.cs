@@ -14,7 +14,11 @@ namespace LetsCreateZelda.Manager
         private Keys _lastKey;
         private static event EventHandler<NewInputEventArgs> _FireNewInput;
         private double _counter;
-        private static double _cooldown; 
+        private static double _cooldown;
+        private static double _pauseCounter;
+        private static bool _pause;
+        private static double _pauseTime; 
+        
 
         public static event EventHandler<NewInputEventArgs> FireNewInput
         {
@@ -24,6 +28,8 @@ namespace LetsCreateZelda.Manager
 
         public static bool ThrottleInput { get; set; }
         public static bool LockMovement { get; set; }
+
+        
 
 
         public ManagerInput()
@@ -35,6 +41,20 @@ namespace LetsCreateZelda.Manager
 
         public void Update(double gameTime)
         {
+            if (_pause)
+            {
+                _pauseCounter += gameTime;
+                if (_pauseCounter > _pauseTime)
+                {
+                    _pause = false;
+                }
+                else
+                {
+                    return; 
+                }
+            }
+
+
             if(_cooldown > 0)
             {
                 _counter += gameTime;
@@ -85,6 +105,13 @@ namespace LetsCreateZelda.Manager
                      }
                 }
             }
+        }
+
+        public static void PauseInput(double milisecond)
+        {
+            _pauseCounter = 0;
+            _pauseTime = milisecond;
+            _pause = true; 
         }
 
     }

@@ -35,7 +35,13 @@ namespace LetsCreateZelda.Screens
 
         public override void Initialize()
         {
-           
+            _entities.Initialize();
+            ManagerInput.ThrottleInput = false; 
+        }
+
+        public override void Uninitialize()
+        {
+            _entities.Uninitialize(); 
         }
 
         public override void LoadContent(ContentManager content)
@@ -84,17 +90,17 @@ namespace LetsCreateZelda.Screens
             
             //_entities.AddEntity(testNPC);
             //Script test!
-            var testEnemy = new BaseObject { Id = string.Format("enemy_{0}", "script") };
-            testEnemy.AddComponent(new Sprite(content.Load<Texture2D>("Octorok"), 16, 16, new Vector2(50 + ManagerFunction.Random(10, 20), 50 + ManagerFunction.Random(10, 20))));
-            testEnemy.AddComponent(new AIMovementRandom(1000, 0.5f));
-            testEnemy.AddComponent(new Animation(16, 16, 2));
-            testEnemy.AddComponent(new Collision(_managerMap,_entities));
-            testEnemy.AddComponent(new Octorok(player, content.Load<Texture2D>("Octorok_bullet"), _managerMap,_entities));
-            testEnemy.AddComponent(new Camera(_managerCamera));
-            testEnemy.AddComponent(new Damage(_entities));
-            testEnemy.AddComponent(FactoryStats.GetStats("Octorok"));
-            testEnemy.AddComponent(new Script("script_time_test"));
-            _entities.AddEntity(testEnemy);
+            //var testEnemy = new BaseObject { Id = string.Format("enemy_{0}", "script") };
+            //testEnemy.AddComponent(new Sprite(content.Load<Texture2D>("Octorok"), 16, 16, new Vector2(50 + ManagerFunction.Random(10, 20), 50 + ManagerFunction.Random(10, 20))));
+            //testEnemy.AddComponent(new AIMovementRandom(1000, 0.5f));
+            //testEnemy.AddComponent(new Animation(16, 16, 2));
+            //testEnemy.AddComponent(new Collision(_managerMap,_entities));
+            //testEnemy.AddComponent(new Octorok(player, content.Load<Texture2D>("Octorok_bullet"), _managerMap,_entities));
+            //testEnemy.AddComponent(new Camera(_managerCamera));
+            //testEnemy.AddComponent(new Damage(_entities));
+            //testEnemy.AddComponent(FactoryStats.GetStats("Octorok"));
+            //testEnemy.AddComponent(new Script("script_time_test"));
+            //_entities.AddEntity(testEnemy);
 
         
 

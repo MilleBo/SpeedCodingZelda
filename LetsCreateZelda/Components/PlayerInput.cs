@@ -25,7 +25,6 @@ namespace LetsCreateZelda.Components
 
         public PlayerInput(ManagerScreen managerScreen)
         {
-            ManagerInput.FireNewInput += ManagerInput_FireNewInput;
             _managerScreen = managerScreen;
         }
 
@@ -98,6 +97,16 @@ namespace LetsCreateZelda.Components
             }
         }
 
+        public override void Initialize()
+        {
+            ManagerInput.FireNewInput -= ManagerInput_FireNewInput;
+            ManagerInput.FireNewInput += ManagerInput_FireNewInput;
+        }
+
+        public override void Uninitalize()
+        {
+            ManagerInput.FireNewInput -= ManagerInput_FireNewInput;
+        }
 
 
         public override void Update(double gameTime)

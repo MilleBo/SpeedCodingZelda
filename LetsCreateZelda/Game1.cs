@@ -71,7 +71,7 @@ namespace LetsCreateZelda
             _managerLists = new ManagerLists();
             _managerLists.Initialize();
             //_managerScreen.LoadNewScreen(new ScreenWorld(_managerScreen));
-            _managerScreen.LoadNewScreen(new ScreenStart(_managerScreen));
+            _managerScreen.LoadNewScreen(new ScreenStart(_managerScreen),false);
             // TODO: use this.Content to load your game content here
         }
 

@@ -62,5 +62,18 @@ namespace LetsCreateZelda
         }
 
 
+        public void Initialize()
+        {
+            if (_components == null)
+                return; 
+            _components.ForEach(c => c.Initialize());
+        }
+
+        public void Uninitialize()
+        {
+            if (_components == null)
+                return; 
+            _components.ForEach(c => c.Uninitalize());
+        }
     }
 }

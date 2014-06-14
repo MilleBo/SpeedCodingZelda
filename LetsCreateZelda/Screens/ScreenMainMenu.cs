@@ -35,9 +35,19 @@ namespace LetsCreateZelda.Screens
             if(stats == null)
                 managerScreen.GoBackOneScreen();
             _playerStatsGui = new PlayerStatsGui(_stats,WindowPosition.Up);
+            _cursorPosition = new Vector2(0,0);
+        }
+
+        public override void Initialize()
+        {
+            ManagerInput.FireNewInput -= ManagerInput_FireNewInput;
             ManagerInput.FireNewInput += ManagerInput_FireNewInput;
             ManagerInput.ThrottleInput = true; 
-            _cursorPosition = new Vector2(0,0);
+        }
+
+        public override void Uninitialize()
+        {
+            ManagerInput.FireNewInput -= ManagerInput_FireNewInput;
         }
 
         void ManagerInput_FireNewInput(object sender, MyEventArgs.NewInputEventArgs e)

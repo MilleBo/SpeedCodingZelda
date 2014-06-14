@@ -94,5 +94,21 @@ namespace LetsCreateZelda.Map
 
             return false; 
         }
+
+        public void Initialize()
+        {
+            if (_entities == null)
+                return; 
+
+            _entities.ForEach(e => e.Initialize());
+        }
+
+        public void Uninitialize()
+        {
+            if (_entities == null)
+                return; 
+
+            _entities.ForEach(e => e.Uninitialize());
+        }
     }
 }
