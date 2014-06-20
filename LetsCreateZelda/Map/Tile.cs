@@ -1,4 +1,10 @@
-﻿using System;
+﻿//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+// Youtube channel - https://www.youtube.com/user/Maloooon
+//------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,3 +27,7 @@ namespace LetsCreateZelda.Map
         public Vector2 Position { get { return new Vector2(XPos * 16, YPos * 16); } }
     }
 }
+
+
+
+

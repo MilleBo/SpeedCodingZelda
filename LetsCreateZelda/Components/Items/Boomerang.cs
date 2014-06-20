@@ -1,4 +1,10 @@
-﻿using System;
+﻿//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+// Youtube channel - https://www.youtube.com/user/Maloooon
+//------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +33,7 @@ namespace LetsCreateZelda.Components.Items
         {
             ItemId = 1;
             _speed = 2.5f; 
+            MenuPosition = new Vector2(0,0);
         }
 
         public override void Action()
@@ -56,7 +63,8 @@ namespace LetsCreateZelda.Components.Items
             AddComponent(new Sprite(content.Load<Texture2D>("boomerang"),16,16,new Vector2(0,0)));
             AddComponent(new Collision(managerMap,entities));
             AddComponent(new Animation(16,16,3));
-            AddComponent(new Camera(managerCamera));           
+            AddComponent(new Camera(managerCamera));
+            GuiTexture = content.Load<Texture2D>("boomerang_gui"); 
         }
 
         public override void Update(double gameTime)
@@ -155,3 +163,6 @@ namespace LetsCreateZelda.Components.Items
         }
     }
 }
+
+
+

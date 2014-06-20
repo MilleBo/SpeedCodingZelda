@@ -1,4 +1,10 @@
-﻿namespace LetsCreateZelda
+﻿//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+// Youtube channel - https://www.youtube.com/user/Maloooon
+//------------------------------------------------------
+namespace LetsCreateZelda
 {
     public enum ComponentType
     {
@@ -9,7 +15,7 @@
         AIMovement,
         EnemyOctorok,
         Camera,
-        Items,
+        Equipment,
         GUI,
         Damage,
         Stats,
@@ -70,3 +76,11 @@
         Explosion
     }
 }
+
+//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+//------------------------------------------------------
+
+

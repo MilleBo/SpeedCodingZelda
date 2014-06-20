@@ -1,4 +1,10 @@
-﻿using System;
+﻿//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+// Youtube channel - https://www.youtube.com/user/Maloooon
+//------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +47,7 @@ namespace LetsCreateZelda.Components
             CurrentState = State.Standing;
             _animationFrames = animationFrames;
             _animationSpeed = animationSpeed; 
+            TextureRectangle = new Rectangle(0,0,width,height);
         }
 
 
@@ -135,3 +142,8 @@ namespace LetsCreateZelda.Components
 
     }
 }
+
+
+
+
+

@@ -1,10 +1,17 @@
-﻿using System;
+﻿//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+// Youtube channel - https://www.youtube.com/user/Maloooon
+//------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LetsCreateZelda.Components.Items;
 using LetsCreateZelda.Manager;
 using LetsCreateZelda.Map;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,7 +28,7 @@ namespace LetsCreateZelda.Components
 
         public override ComponentType ComponentType
         {
-            get { return ComponentType.Items; }
+            get { return ComponentType.Equipment; }
         }
 
         public Equipment(ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera, Entities entities)
@@ -49,6 +56,8 @@ namespace LetsCreateZelda.Components
                     _equipedItem[itemSlot] = item; 
                 else 
                     _equipedItem.Add(itemSlot,item);
+
+                item.MenuPosition = new Vector2(-1,-1);
             }
         }
 
@@ -77,6 +86,50 @@ namespace LetsCreateZelda.Components
                 if (item.Value.Active)
                     item.Value.Draw(spritebatch);
             }
+        }
+
+        public void DrawGui(SpriteBatch spriteBatch, ItemSlot itemSlot, Rectangle rectangle)
+        {
+            if(_equipedItem.ContainsKey(itemSlot))
+                _equipedItem[itemSlot].DrawGui(spriteBatch, rectangle);
+        }
+
+        public bool EquipedInSlot(ItemSlot itemSlot)
+        {
+            if(_equipedItem.ContainsKey(itemSlot))
+                return _equipedItem[itemSlot] != null;
+            return false; 
+        }
+
+        public void UnEquipInSlot(ItemSlot itemSlot, Vector2 cursorPosition)
+        {
+            if (_equipedItem.ContainsKey(itemSlot))
+            {
+                _equipedItem[itemSlot].MenuPosition = cursorPosition;
+                _equipedItem.Remove(itemSlot);   
+            }
+            
+        }
+
+        public void DrawMenuGui(SpriteBatch spriteBatch)
+        {
+            foreach (var item in _items)
+            {
+                if(_equipedItem.ContainsValue(item))
+                    continue;
+                item.DrawMenu(spriteBatch);
+            }
+        }
+
+        public void SwitchEquipment(ItemSlot itemSlot, Vector2 cursorPosition)
+        {
+            var item = _items.FirstOrDefault(i => i.MenuPosition.Equals(cursorPosition));
+            UnEquipInSlot(itemSlot,cursorPosition);
+            if (item != null)
+            {
+                _equipedItem.Add(itemSlot,item);
+            }
+
         }
     }
 }

@@ -1,4 +1,10 @@
-﻿using System;
+﻿//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+// Youtube channel - https://www.youtube.com/user/Maloooon
+//------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,10 +61,10 @@ namespace LetsCreateZelda.Screens
             player.AddComponent(new Collision(_managerMap,_entities));
             player.AddComponent(new Camera(_managerCamera));
             player.AddComponent(new Equipment(content,_managerMap,_managerCamera,_entities));
-            player.GetComponent<Equipment>(ComponentType.Items).AddItem(new Boomerang());
-            player.GetComponent<Equipment>(ComponentType.Items).AddItem(new Sword(_entities));
-            player.GetComponent<Equipment>(ComponentType.Items).EquipItemInSlot(1,ItemSlot.A);
-            player.GetComponent<Equipment>(ComponentType.Items).EquipItemInSlot(2, ItemSlot.B);
+            player.GetComponent<Equipment>(ComponentType.Equipment).AddItem(new Boomerang());
+            player.GetComponent<Equipment>(ComponentType.Equipment).AddItem(new Sword(_entities));
+            player.GetComponent<Equipment>(ComponentType.Equipment).EquipItemInSlot(1,ItemSlot.A);
+            player.GetComponent<Equipment>(ComponentType.Equipment).EquipItemInSlot(2, ItemSlot.B);
             player.AddComponent(new Damage(_entities,true));
             player.AddComponent(FactoryStats.GetStats("Link"));
             player.AddComponent(new GUI());
@@ -125,3 +131,6 @@ namespace LetsCreateZelda.Screens
         }
     }
 }
+
+
+

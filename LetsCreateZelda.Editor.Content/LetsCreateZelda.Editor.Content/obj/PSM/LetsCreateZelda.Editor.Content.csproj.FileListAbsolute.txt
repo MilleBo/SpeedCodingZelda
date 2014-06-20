@@ -1,9 +1,0 @@
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\bin\PSM\Content\tile_mapeditor.xnb
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\bin\PSM\Content\mouse.xnb
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\bin\PSM\Content\overworld_tiles.xnb
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\bin\PSM\Content\cross.xnb
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\bin\PSM\Content\Font.xnb
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\bin\PSM\IgnoreMe.dll
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\obj\PSM\LetsCreateZelda.Editor.Content.csprojResolveAssemblyReference.cache
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\obj\PSM\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\obj\PSM\IgnoreMe.dll

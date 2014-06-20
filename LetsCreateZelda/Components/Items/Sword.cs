@@ -1,4 +1,10 @@
-﻿using System;
+﻿//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+// Youtube channel - https://www.youtube.com/user/Maloooon
+//------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -20,7 +26,8 @@ namespace LetsCreateZelda.Components.Items
         public Sword(Entities entities)
         {
             ItemId = 2;
-            _entities = entities; 
+            _entities = entities;
+            MenuPosition = new Vector2(0, 0);
         }
 
         public override void Action()
@@ -52,6 +59,7 @@ namespace LetsCreateZelda.Components.Items
             AddComponent(new Sprite(ManagerContent.LoadTexture("sword"), 16, 16, new Vector2(0, 0)));
             AddComponent(new Animation(16,16,2,100));
             AddComponent(new Camera(managerCamera));
+            GuiTexture = content.Load<Texture2D>("sword_gui"); 
         }
 
         public override void Update(double gameTime)
@@ -148,3 +156,8 @@ namespace LetsCreateZelda.Components.Items
         }
     }
 }
+
+
+
+
+

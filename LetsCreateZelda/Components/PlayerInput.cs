@@ -1,4 +1,10 @@
-﻿using System;
+﻿//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+// Youtube channel - https://www.youtube.com/user/Maloooon
+//------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,18 +72,21 @@ namespace LetsCreateZelda.Components
                     case Input.A:
                         if(animation.CurrentState == State.Walking)
                             animation.StopAnimation();
-                        equipment = GetComponent<Equipment>(ComponentType.Items); 
+                        equipment = GetComponent<Equipment>(ComponentType.Equipment); 
                         equipment.FireItem(ItemSlot.A);
                         break;
                     case Input.S:
                         if (animation.CurrentState == State.Walking)
                             animation.StopAnimation();
                         //ManagerEvents.AddEvents(new List<IGameEvent> {new GameEventMessage("I just started a new event with my s button")});
-                        equipment = GetComponent<Equipment>(ComponentType.Items); 
+                        equipment = GetComponent<Equipment>(ComponentType.Equipment); 
                         equipment.FireItem(ItemSlot.B);
                         break; 
                     case Input.Select:
-                        _managerScreen.LoadNewScreen(new ScreenMainMenu(_managerScreen,GetComponent<Stats>(ComponentType.Stats)));
+                        _managerScreen.LoadNewScreen(
+                            new ScreenMainMenu(_managerScreen,
+                                GetComponent<Stats>(ComponentType.Stats),
+                                GetComponent<Equipment>(ComponentType.Equipment)));
                         break; 
                                                 
                     default:
@@ -120,3 +129,8 @@ namespace LetsCreateZelda.Components
         }
     }
 }
+
+
+
+
+

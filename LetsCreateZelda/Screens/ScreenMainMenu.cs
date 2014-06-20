@@ -1,4 +1,10 @@
-﻿using System;
+﻿//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+// Youtube channel - https://www.youtube.com/user/Maloooon
+//------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,18 +30,24 @@ namespace LetsCreateZelda.Screens
         private Texture2D _barVert;
         private SpriteFont _font;
         private Stats _stats;
+        private readonly Equipment _equipment;
         private PlayerStatsGui _playerStatsGui;
         private Vector2 _cursorPosition;
-        private double _cursorBlinkCounter; 
+        private double _cursorBlinkCounter;
+        private byte _selectAlpha;
+        private byte _instrumentColor; 
         
 
-        public ScreenMainMenu(ManagerScreen managerScreen, Stats stats) : base(managerScreen)
+        public ScreenMainMenu(ManagerScreen managerScreen, Stats stats, Equipment equipment) : base(managerScreen)
         {
-            _stats = stats; 
+            _stats = stats;
+            _equipment = equipment;
             if(stats == null)
                 managerScreen.GoBackOneScreen();
-            _playerStatsGui = new PlayerStatsGui(_stats,WindowPosition.Up);
+            _playerStatsGui = new PlayerStatsGui( WindowPosition.Up);
             _cursorPosition = new Vector2(0,0);
+            _selectAlpha = 255;
+            _instrumentColor = 255; 
         }
 
         public override void Initialize()
@@ -98,6 +110,12 @@ namespace LetsCreateZelda.Screens
                 case Input.Select:
                     ManagerScreen.GoBackOneScreen();
                     break; 
+                case Input.A:
+                    _equipment.SwitchEquipment(ItemSlot.A, _cursorPosition);
+                    break;
+                case Input.S:
+                    _equipment.SwitchEquipment(ItemSlot.B, _cursorPosition);
+                    break; 
             }
 
         }
@@ -119,7 +137,25 @@ namespace LetsCreateZelda.Screens
         {
             _cursorBlinkCounter += gameTime;
             if (_cursorBlinkCounter > 600)
-                _cursorBlinkCounter = 0; 
+            {
+                _cursorBlinkCounter = 0;
+                if (_selectAlpha == 255)
+                {
+                    _selectAlpha = 0;
+                }
+                else
+                {
+                    _selectAlpha = 255; 
+                }
+                   
+            }
+            _playerStatsGui.Update(_stats,_equipment);
+
+            _instrumentColor += 1;
+            if (_instrumentColor > 255)
+            {
+                _instrumentColor = 0; 
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -132,9 +168,34 @@ namespace LetsCreateZelda.Screens
                 spriteBatch.Draw(_barVert, new Rectangle(75, 25 + n*20, 4, 17), Color.White);
             }
 
+            _equipment.DrawMenuGui(spriteBatch); 
             spriteBatch.Draw(_containerTexture, new Rectangle((int) (9 + 32*_cursorPosition.X),(int) (30 + 14*_cursorPosition.Y), 30, 12), _cursorBlinkCounter < 300 ? Color.White : Color.Transparent);
             _playerStatsGui.Draw(spriteBatch);
-            spriteBatch.DrawString(_font,"PUSH SELECT",new Vector2(90,130),Color.Black);
+            spriteBatch.DrawString(_font,"PUSH SELECT",new Vector2(90,130),new Color(0,0,0,_selectAlpha));
+            DrawInstrument(spriteBatch); 
+        }
+
+        private void DrawInstrument(SpriteBatch spriteBatch)
+        {
+            double x = 0;
+            double y = 0; 
+            var length = 30;
+            var angle = 0.0;
+            int i = 0; 
+            while (angle < 2*Math.PI)
+            {
+                x = length*Math.Cos(angle);
+                y = length*Math.Sin(angle);
+
+                spriteBatch.Draw(_backgroundTexture, new Rectangle(120 + (int)x, 85 + (int)y, 5, 5), new Color(_instrumentColor,255,255));
+                spriteBatch.Draw(_backgroundTexture, new Rectangle(115 + (int)x, 85 + (int)y, 5, 5), new Color(_instrumentColor, 255, 255));
+                spriteBatch.Draw(_backgroundTexture, new Rectangle(115 + (int)x, 90 + (int)y, 5, 5), new Color(_instrumentColor, 255, 255));
+                spriteBatch.DrawString(_font,i.ToString(),new Vector2(120 + (int)x,85 + (int)y),Color.Black);
+                angle += 0.8;
+                i++; 
+            }
         }
     }
 }
+
+

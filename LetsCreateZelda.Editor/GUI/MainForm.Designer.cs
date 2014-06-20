@@ -267,3 +267,11 @@
         private System.Windows.Forms.ToolStripMenuItem mnuFileLoad;
     }
 }
+
+//------------------------------------------------------
+// 
+// Copyright - (c) - 2014 - Mille Boström 
+//
+//------------------------------------------------------
+
+
