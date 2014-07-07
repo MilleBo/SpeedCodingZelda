@@ -22,6 +22,7 @@ namespace LetsCreateZelda.Manager
         public bool Locked { get { return (int)_position.X != (int)_moveToPosition.X || (int)_position.Y != (int)_moveToPosition.Y; } }
 
         public Vector2 Position { get { return _position;  } }
+        public Vector2 TilePosition { get { return new Vector2(_position.X/160, _position.Y/120);}}
 
         public ManagerCamera()
         {

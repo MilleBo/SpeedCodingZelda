@@ -33,7 +33,8 @@ namespace LetsCreateZelda
         Enter,
         A,
         S,
-        Select
+        Select,
+        Start
     }
 
     public enum Direction

@@ -23,6 +23,10 @@ namespace LetsCreateZelda.Components
             get { return ComponentType.Camera; }
         }
 
+        public Vector2 CameraPosition { get { return _managerCamera.Position; }}
+
+        public Vector2 CameraTilePositon { get { return _managerCamera.TilePosition;  } }
+
         public Camera(ManagerCamera camera)
         {
             _managerCamera = camera; 

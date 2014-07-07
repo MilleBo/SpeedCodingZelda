@@ -94,6 +94,7 @@ namespace LetsCreateZelda.Manager
             CheckKeyState(Keys.A, Input.A);
             CheckKeyState(Keys.S,Input.S);
             CheckKeyState(Keys.RightShift,Input.Select);
+            CheckKeyState(Keys.Enter, Input.Start);
 
             _lastKeyState = _keyState; 
         }

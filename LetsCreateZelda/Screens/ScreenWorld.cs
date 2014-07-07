@@ -27,7 +27,9 @@ namespace LetsCreateZelda.Screens
         private ManagerMap _managerMap;
         private ManagerCamera _managerCamera;
         private Entities _entities;
-        private ManagerEvents _managerEvents; 
+        private ManagerEvents _managerEvents;
+        private ManagerPlayer _managerPlayer; 
+
 
         public ScreenWorld(ManagerScreen managerScreen) : base(managerScreen)
         {
@@ -35,6 +37,7 @@ namespace LetsCreateZelda.Screens
             _managerMap = new ManagerMap("newmap", _managerCamera);
             _entities = new Entities();
             _managerEvents = new ManagerEvents();
+            _managerPlayer = new ManagerPlayer();
             //uglyyyyyyy
             FactoryDeathAnimation.Initailize(_managerCamera);
         }
@@ -56,7 +59,7 @@ namespace LetsCreateZelda.Screens
 
             var player = new BaseObject {Id = "player"}; 
             player.AddComponent(new Sprite(content.Load<Texture2D>("link_full"), 16, 16, new Vector2(50, 50)));
-            player.AddComponent(new PlayerInput(ManagerScreen));
+            player.AddComponent(new PlayerInput(ManagerScreen,_managerPlayer));
             player.AddComponent(new Animation(16, 16,2));
             player.AddComponent(new Collision(_managerMap,_entities));
             player.AddComponent(new Camera(_managerCamera));

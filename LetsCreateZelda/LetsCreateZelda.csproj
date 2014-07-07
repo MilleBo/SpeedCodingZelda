@@ -74,6 +74,7 @@
     <Compile Include="Manager\ManagerInput.cs" />
     <Compile Include="Manager\ManagerLists.cs" />
     <Compile Include="Manager\ManagerMap.cs" />
+    <Compile Include="Manager\ManagerPlayer.cs" />
     <Compile Include="Manager\ManagerScreen.cs" />
     <Compile Include="Manager\ManagerContent.cs" />
     <Compile Include="Manager\ManagerWindow.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\ScreenMainMenu.cs" />
+    <Compile Include="Screens\ScreenOverworldMap.cs" />
     <Compile Include="Screens\ScreenStart.cs" />
     <Compile Include="Screens\ScreenWorld.cs" />
     <Compile Include="XMLSerialization.cs" />

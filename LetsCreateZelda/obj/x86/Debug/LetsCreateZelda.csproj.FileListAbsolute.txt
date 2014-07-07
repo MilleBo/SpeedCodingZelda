@@ -42,3 +42,12 @@ D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Tao.Sdl.dll
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\obj\x86\Debug\LetsCreateZelda.exe
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\obj\x86\Debug\LetsCreateZelda.pdb
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\obj\x86\Debug\LetsCreateZelda.csprojResolveAssemblyReference.cache
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\cross.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\mouse.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\tile_mapeditor.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\Font.spritefont
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\map_block.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\map_cursor_1.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\map_cursor_2.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\overworld_map.png

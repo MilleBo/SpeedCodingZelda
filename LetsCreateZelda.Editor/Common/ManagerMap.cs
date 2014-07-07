@@ -27,7 +27,7 @@ namespace LetsCreateZelda.Editor.Common
             _managerMouse = managerMouse;
             _tiles = new Manager.ManagerMap("..", camera);
             _tileGridTexture = ManagerContent.LoadTexture("tile_mapeditor");
-            _font = ManagerContent.LoadFont("Font");
+            _font = ManagerContent.LoadFont("Font_GUI");
             _mainForm = mainForm;
             _mainForm.btnSave.Click += Save;
             _mainForm.LoadMap += LoadMap;

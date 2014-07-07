@@ -20,7 +20,8 @@ namespace LetsCreateZelda.Components
     class PlayerInput : Component
     {
 
-        private ManagerScreen _managerScreen; 
+        private ManagerScreen _managerScreen;
+        private ManagerPlayer _managerPlayer;
 
         public override ComponentType ComponentType
         {
@@ -29,9 +30,10 @@ namespace LetsCreateZelda.Components
 
 
 
-        public PlayerInput(ManagerScreen managerScreen)
+        public PlayerInput(ManagerScreen managerScreen, ManagerPlayer managerPlayer)
         {
             _managerScreen = managerScreen;
+            _managerPlayer = managerPlayer;
         }
 
         void ManagerInput_FireNewInput(object sender, MyEventArgs.NewInputEventArgs e)
@@ -82,11 +84,18 @@ namespace LetsCreateZelda.Components
                         equipment = GetComponent<Equipment>(ComponentType.Equipment); 
                         equipment.FireItem(ItemSlot.B);
                         break; 
-                    case Input.Select:
+                    case Input.Start: 
                         _managerScreen.LoadNewScreen(
                             new ScreenMainMenu(_managerScreen,
                                 GetComponent<Stats>(ComponentType.Stats),
                                 GetComponent<Equipment>(ComponentType.Equipment)));
+                        break; 
+
+                    case Input.Select:
+                        camera = GetComponent<Camera>(ComponentType.Camera);
+                        if(camera != null)
+                            _managerScreen.LoadNewScreen(new ScreenOverworldMap(_managerScreen,_managerPlayer,
+                                camera.CameraTilePositon));
                         break; 
                                                 
                     default:
@@ -100,9 +109,30 @@ namespace LetsCreateZelda.Components
 
             Vector2 position; 
             if(!camera.GetPosition(sprite.Position,out position))
-            {
-                
+            {               
                 camera.MoveCamera(animation.CurrentDirection);
+                UpdateMap(camera, animation.CurrentDirection);
+            }
+        }
+
+        private void UpdateMap(Camera camera, Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Left:
+                    _managerPlayer.UpdateMap(camera.CameraTilePositon.X - 1, camera.CameraTilePositon.Y);
+                    break;
+                case Direction.Right:
+                    _managerPlayer.UpdateMap(camera.CameraTilePositon.X + 1, camera.CameraTilePositon.Y);
+                    break;
+                case Direction.Up:
+                    _managerPlayer.UpdateMap(camera.CameraTilePositon.X, camera.CameraTilePositon.Y - 1);
+                    break;
+                case Direction.Down:
+                    _managerPlayer.UpdateMap(camera.CameraTilePositon.X, camera.CameraTilePositon.Y + 1);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("direction");
             }
         }
 

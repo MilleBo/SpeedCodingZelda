@@ -105,9 +105,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content.csproj">
-      <Project>{74510824-51d4-43ae-b514-e411e9134ede}</Project>
-      <Name>LetsCreateZelda.Editor.Content</Name>
+    <ProjectReference Include="..\LetsCreateZeldaContent\LetsCreateZeldaContent\LetsCreateZeldaContent.csproj">
+      <Project>{55b4fcbb-6faf-4550-8d74-892c40d74318}</Project>
+      <Name>LetsCreateZeldaContent</Name>
     </ProjectReference>
     <ProjectReference Include="..\LetsCreateZelda\LetsCreateZelda.csproj">
       <Project>{53efcaf1-04be-44f8-b2b2-9c4cb379e5eb}</Project>
