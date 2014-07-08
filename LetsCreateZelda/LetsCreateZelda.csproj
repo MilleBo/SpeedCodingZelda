@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="BaseObject.cs" />
     <Compile Include="Common\EventSwitch.cs" />
+    <Compile Include="Common\OverworldMapObjects.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Components\Animation.cs" />
     <Compile Include="Components\Camera.cs" />

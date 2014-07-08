@@ -120,16 +120,16 @@ namespace LetsCreateZelda.Components
             switch (direction)
             {
                 case Direction.Left:
-                    _managerPlayer.UpdateMap(camera.CameraTilePositon.X - 1, camera.CameraTilePositon.Y);
+                    _managerPlayer.UpdateMap((int)camera.CameraTilePositon.X - 1, (int)camera.CameraTilePositon.Y);
                     break;
                 case Direction.Right:
-                    _managerPlayer.UpdateMap(camera.CameraTilePositon.X + 1, camera.CameraTilePositon.Y);
+                    _managerPlayer.UpdateMap((int)camera.CameraTilePositon.X + 1, (int)camera.CameraTilePositon.Y);
                     break;
                 case Direction.Up:
-                    _managerPlayer.UpdateMap(camera.CameraTilePositon.X, camera.CameraTilePositon.Y - 1);
+                    _managerPlayer.UpdateMap((int)camera.CameraTilePositon.X, (int)camera.CameraTilePositon.Y - 1);
                     break;
                 case Direction.Down:
-                    _managerPlayer.UpdateMap(camera.CameraTilePositon.X, camera.CameraTilePositon.Y + 1);
+                    _managerPlayer.UpdateMap((int)camera.CameraTilePositon.X, (int)camera.CameraTilePositon.Y + 1);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("direction");

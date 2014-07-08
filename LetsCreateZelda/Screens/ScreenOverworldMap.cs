@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using IronPython.Modules;
+using LetsCreateZelda.Common;
 using LetsCreateZelda.Manager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -18,25 +19,32 @@ namespace LetsCreateZelda.Screens
         private Texture2D _firstCursorTexture;
         private Texture2D _secondCursorTexture;
         private Texture2D _mapBlockTexture;
-        private double _cursorCounter; 
+        private Texture2D _playerIconTexture;
+
+        private double _cursorCounter;
+        private Vector2 _cursorPosition;
+        private OverworldMapObjects _overworldMapObjects; 
 
         public ScreenOverworldMap(ManagerScreen managerScreen, ManagerPlayer managerPlayer, Vector2 cameraPosition) : base(managerScreen)
         {
             _managerPlayer = managerPlayer;
             _cameraPosition = cameraPosition;
-            _cursorCounter = 0;
-           
+            _cursorPosition = _cameraPosition; 
+            _cursorCounter = 0;      
+            _overworldMapObjects = new OverworldMapObjects();
         }
 
         public override void Initialize()
         {
             base.Initialize();
+            ManagerInput.ThrottleInput = true; 
             ManagerInput.FireNewInput += ManagerInput_FireNewInput;
         }
 
         public override void Uninitialize()
         {
             base.Uninitialize();
+            ManagerInput.ThrottleInput = false; 
             ManagerInput.FireNewInput -= ManagerInput_FireNewInput;
         }
 
@@ -44,6 +52,38 @@ namespace LetsCreateZelda.Screens
         {
             if(e.Input == Input.Select)
                 ManagerScreen.GoBackOneScreen();
+
+            switch (e.Input)
+            {
+                case Input.Left:
+                    if (_cursorPosition.X - 1 < 0)
+                        return;
+                    if (!_managerPlayer.TileExplored((int)_cursorPosition.X - 1, (int)_cursorPosition.Y))
+                        return; 
+                    _cursorPosition = new Vector2(_cursorPosition.X - 1, _cursorPosition.Y);
+                    break;
+                case Input.Right:
+                    if (_cursorPosition.X + 1 > 15)
+                        return;
+                    if (!_managerPlayer.TileExplored((int)_cursorPosition.X + 1, (int)_cursorPosition.Y))
+                        return; 
+                    _cursorPosition = new Vector2(_cursorPosition.X + 1, _cursorPosition.Y);
+                    break;
+                case Input.Up:
+                    if (_cursorPosition.Y - 1 < 0)
+                        return;
+                    if (!_managerPlayer.TileExplored((int)_cursorPosition.X, (int)_cursorPosition.Y - 1))
+                        return; 
+                    _cursorPosition = new Vector2(_cursorPosition.X, _cursorPosition.Y - 1);
+                    break;
+                case Input.Down:
+                    if (_cursorPosition.Y + 1 > 15)
+                        return;
+                    if (!_managerPlayer.TileExplored((int)_cursorPosition.X, (int)_cursorPosition.Y + 1))
+                        return; 
+                    _cursorPosition = new Vector2(_cursorPosition.X, _cursorPosition.Y + 1);
+                    break;
+            }
         }
 
         public override void LoadContent(ContentManager content)
@@ -52,6 +92,9 @@ namespace LetsCreateZelda.Screens
             _firstCursorTexture = content.Load<Texture2D>("map_cursor_1");
             _secondCursorTexture = content.Load<Texture2D>("map_cursor_2");
             _mapBlockTexture = content.Load<Texture2D>("map_block");
+            _playerIconTexture = content.Load<Texture2D>("map_player_icon"); 
+            _overworldMapObjects.LoadContent(content);
+
         }
 
         public override void Update(double gameTime)
@@ -64,19 +107,25 @@ namespace LetsCreateZelda.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_mapTexture,new Vector2(0,0),Color.White);
-            for (int n = 0; n < 16; n++)
+            for (int x = 0; x < 16; x++)
             {
-                for (int i = 0; i < 16; i++)
+                for (int y = 0; y < 16; y++)
                 {
-                    if(_managerPlayer.ExploredMapTiles.Any(p => p.X == n && p.Y == i))
+                    if(_managerPlayer.TileExplored(x,y))
                         continue;
 
-                    spriteBatch.Draw(_mapBlockTexture,new Rectangle(16 + n*7 + n, 8 + i*7 + i,9,9),Color.White);
+                    spriteBatch.Draw(_mapBlockTexture,new Rectangle(16 + x*8, 8 + y*8,9,9),Color.White);
                 }
             }
-            spriteBatch.Draw(_cursorCounter > 250 ? _secondCursorTexture : _firstCursorTexture,
-    new Rectangle((int)(3 + _cameraPosition.X * 7 + _cameraPosition.X), (int)(_cameraPosition.Y * 7 - 5 + _cameraPosition.Y), 36, 36), Color.White);
 
+            spriteBatch.Draw(_cursorCounter > 250 ? _secondCursorTexture : _firstCursorTexture,
+                                new Rectangle((int)(3 + _cursorPosition.X * 8), (int)(_cursorPosition.Y * 8 - 5), 36, 36), Color.White);
+
+            spriteBatch.Draw(_playerIconTexture, new Rectangle((int)(18 + _cameraPosition.X * 8), (int)(_cameraPosition.Y * 8 + 10), 6, 6), _cursorCounter > 250 ? Color.White : Color.Red);
+            
+            _overworldMapObjects.Draw(spriteBatch,_cursorPosition);
         }
+
+
     }
 }
