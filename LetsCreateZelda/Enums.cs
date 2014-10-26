@@ -20,7 +20,8 @@ namespace LetsCreateZelda
         Damage,
         Stats,
         DeathAnimation,
-        Script
+        Script,
+        StatusEffects
     }
 
     public enum Input

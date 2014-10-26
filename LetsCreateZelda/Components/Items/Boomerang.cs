@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LetsCreateZelda.Components.StatusEffects;
 using LetsCreateZelda.Manager;
 using LetsCreateZelda.Map;
 using Microsoft.Xna.Framework;
@@ -18,9 +19,11 @@ namespace LetsCreateZelda.Components.Items
 {
     internal class Boomerang : Item
     {
+        private readonly Entities _entities;
         private Direction _currentDirection;
         private double _counter;
-        private float _speed; 
+        private float _speed;
+        private bool _alreadyHitObject; 
         private enum BoomerangState
         {
             Forward,
@@ -29,11 +32,13 @@ namespace LetsCreateZelda.Components.Items
         };
         private BoomerangState _currentState;
 
-        public Boomerang()
+        public Boomerang(Entities entities)
         {
+            _entities = entities;
             ItemId = 1;
             _speed = 2.5f; 
             MenuPosition = new Vector2(0,0);
+            _alreadyHitObject = false; 
         }
 
         public override void Action()
@@ -60,11 +65,11 @@ namespace LetsCreateZelda.Components.Items
         public override void LoadContent(Equipment owner, ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera, Entities entities)
         {
             base.LoadContent(owner,content,managerMap,managerCamera,entities);
-            AddComponent(new Sprite(content.Load<Texture2D>("boomerang"),16,16,new Vector2(0,0)));
+            AddComponent(new Sprite(ManagerContent.LoadTexture("boomerang"),16,16,new Vector2(0,0)));
             AddComponent(new Collision(managerMap,entities));
             AddComponent(new Animation(16,16,3));
             AddComponent(new Camera(managerCamera));
-            GuiTexture = content.Load<Texture2D>("boomerang_gui"); 
+            GuiTexture = ManagerContent.LoadTexture("boomerang_gui"); 
         }
 
         public override void Update(double gameTime)
@@ -80,6 +85,8 @@ namespace LetsCreateZelda.Components.Items
 
             _counter += gameTime; 
 
+            CheckCollision();
+
             switch (_currentState)
             {
                     case BoomerangState.Forward:
@@ -93,6 +100,24 @@ namespace LetsCreateZelda.Components.Items
                     break; 
             }
         }
+
+
+        private void CheckCollision()
+        {
+            BaseObject outBaseObject;
+            var sprite = GetComponent<Sprite>(ComponentType.Sprite);
+            Animation outAnimation;
+            if (_entities.CheckCollision(sprite.Rectangle, out outAnimation, out outBaseObject, Owner.GetOwnerId()))
+            {
+                var statusEffect = outBaseObject.GetComponent<StatusEffect>(ComponentType.StatusEffects);
+                statusEffect.StatusEffects.Add(new StatusEffectFreeze(outBaseObject));
+
+                _currentState = BoomerangState.Back;
+                _counter = 0;
+                _alreadyHitObject = true; 
+            }
+        }
+
 
         private void MoveBack(Sprite sprite)
         {

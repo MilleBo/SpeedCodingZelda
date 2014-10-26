@@ -38,7 +38,8 @@ namespace LetsCreateZelda.Manager
         public ManagerScreen(ContentManager content)
         {
             _content = content;
-            _backgroundTexture = content.Load<Texture2D>("white_background"); 
+            _backgroundTexture = ManagerContent.LoadTexture("white_background");
+                //content.Load<Texture2D>("Textures/white_background"); 
         }
 
         public void LoadNewScreen(Screen screen, bool fade = true, bool loadContent = true)

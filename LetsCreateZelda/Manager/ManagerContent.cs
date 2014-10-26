@@ -30,7 +30,7 @@ namespace LetsCreateZelda.Manager
         {
             if (!_textureList.ContainsKey(textureName))
             {
-                _textureList.Add(textureName,_content.Load<Texture2D>(textureName));
+                _textureList.Add(textureName, _content.Load<Texture2D>("Textures/" + textureName));
             }
             return _textureList[textureName]; 
         }
@@ -39,7 +39,7 @@ namespace LetsCreateZelda.Manager
         {
             if (!_fontList.ContainsKey(fontName))
             {
-                _fontList.Add(fontName, _content.Load<SpriteFont>(fontName));
+                _fontList.Add(fontName, _content.Load<SpriteFont>("Fonts/" + fontName));
             }
             return _fontList[fontName];
         }

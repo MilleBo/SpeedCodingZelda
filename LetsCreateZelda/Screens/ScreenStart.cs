@@ -27,7 +27,7 @@ namespace LetsCreateZelda.Screens
 
         public override void LoadContent(ContentManager content)
         {
-            _image = content.Load<Texture2D>("start_screen");
+            _image = ManagerContent.LoadTexture("start_screen"); //content.Load<Texture2D>("start_screen");
         }
 
         public override void Initialize()

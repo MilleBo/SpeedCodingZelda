@@ -25,7 +25,7 @@ namespace LetsCreateZelda.Factories
         public static Stats GetStats(string statsId)
         {
             if(_stats == null)
-                return new Stats("",0,0,0);
+                return new Stats("",0,0,0,0);
             return (Stats) _stats.FirstOrDefault(s => s.StatsId.Equals(statsId)).Clone();
         }
     }

@@ -20,14 +20,11 @@ namespace LetsCreateZelda.Components.Movement
         private Direction _currentDirection; 
         private readonly int _frequency; 
         private double _counter;
-        private float _speed; 
  
-        public AIMovementRandom(int frequency, float speed = 1.5f)
+        public AIMovementRandom(int frequency)
         {
-            _speed = speed; 
             _frequency = frequency; 
-            ChangeDirection();
-           
+            ChangeDirection();        
         }
 
 
@@ -45,7 +42,14 @@ namespace LetsCreateZelda.Components.Movement
             if (camera == null)
                 return;
             if (!camera.InsideScreen(sprite.Position) || camera.CameraInTransition())
-                return; 
+                return;
+            var stats = GetComponent<Stats>(ComponentType.Stats);
+            var speed = 1.5f; 
+            if (stats != null)
+            {
+                speed = stats.Speed;
+            }
+
             _counter += gameTime; 
             if(_counter > _frequency)
             {
@@ -59,19 +63,19 @@ namespace LetsCreateZelda.Components.Movement
             switch (_currentDirection)
             {
                 case Direction.Up:
-                    y = -1* _speed;
+                    y = -1* speed;
                     break;
 
                 case Direction.Down:
-                    y = _speed; 
+                    y = speed; 
                     break;
 
                 case Direction.Left:
-                    x = -1*_speed; 
+                    x = -1*speed; 
                     break;
 
                 case Direction.Right:
-                    x = _speed;
+                    x = speed;
                     break;
                 default:
                     return;

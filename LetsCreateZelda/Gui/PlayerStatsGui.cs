@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LetsCreateZelda.Components;
+using LetsCreateZelda.Manager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,11 +36,11 @@ namespace LetsCreateZelda.Gui
 
         public void LoadContent(ContentManager content)
         {
-            _rupeeTexture = content.Load<Texture2D>("rupee_gui");
-            _heartTexture = content.Load<Texture2D>("heart_gui");
-            _containerTexture = content.Load<Texture2D>("container_gui");
-            _font = content.Load<SpriteFont>("Font_GUI");
-            _backgroundTexture = content.Load<Texture2D>("white_background");
+            _rupeeTexture = ManagerContent.LoadTexture("rupee_gui");
+            _heartTexture = ManagerContent.LoadTexture("heart_gui");
+            _containerTexture = ManagerContent.LoadTexture("container_gui");
+            _font = ManagerContent.LoadFont("Font_GUI");
+            _backgroundTexture = ManagerContent.LoadTexture("white_background");
         }
 
         public void Update(Stats stats, Equipment equipment)

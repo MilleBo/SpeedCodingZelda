@@ -57,3 +57,8 @@ D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor\bin\WindowsG
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor\bin\WindowsGL\Debug\Content\map_cursor_1.png
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor\bin\WindowsGL\Debug\Content\map_cursor_2.png
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor\bin\WindowsGL\Debug\Content\overworld_map.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor\bin\WindowsGL\Debug\Content\map_icon_dungeon.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor\bin\WindowsGL\Debug\Content\map_icon_owl.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor\bin\WindowsGL\Debug\Content\map_icon_question.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor\bin\WindowsGL\Debug\Content\map_icon_shop.png
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda.Editor\bin\WindowsGL\Debug\Content\map_player_icon.png

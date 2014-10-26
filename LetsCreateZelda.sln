@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetsCreateZelda", "LetsCreateZelda\LetsCreateZelda.csproj", "{53EFCAF1-04BE-44F8-B2B2-9C4CB379E5EB}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetsCreateZelda.Editor", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetsCreateZelda.Editor.Content", "LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.Content.csproj", "{74510824-51D4-43AE-B514-E411E9134EDE}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "LetsCreateZelda.Editor.ContentContent", "LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.ContentContent\LetsCreateZelda.Editor.ContentContent.contentproj", "{CA761059-9043-40A5-8529-5271D65DC65A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetsCreateZelda.Editor.ContentContent", "LetsCreateZelda.Editor.Content\LetsCreateZelda.Editor.ContentContent\LetsCreateZelda.Editor.ContentContent.contentproj", "{CA761059-9043-40A5-8529-5271D65DC65A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Editor", "Editor", "{A813D4BD-B262-435F-A741-CBEFBB254DCA}"
 EndProject

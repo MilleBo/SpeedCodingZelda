@@ -23,13 +23,16 @@ namespace LetsCreateZelda.Components
         public int Attack { get; set; }
         public int Defense { get; set; }
 
-        public Stats(string statsId, int health, int attack, int defense)
+        public float Speed { get; set; }    
+
+        public Stats(string statsId, int health, int attack, int defense, int speed)
         {
             StatsId = statsId;
             Health = health;
             _currentHealth = Health;
             Attack = attack;
-            Defense = defense; 
+            Defense = defense;
+            Speed = speed; 
         }
 
         public Stats() { }
@@ -57,7 +60,8 @@ namespace LetsCreateZelda.Components
                        Attack = Attack,
                        Defense = Defense,
                        Health = Health,
-                       StatsId = StatsId
+                       StatsId = StatsId,
+                       Speed = Speed
                    };
         }
 

@@ -59,7 +59,7 @@ namespace LetsCreateZelda.Components.Items
             AddComponent(new Sprite(ManagerContent.LoadTexture("sword"), 16, 16, new Vector2(0, 0)));
             AddComponent(new Animation(16,16,2,100));
             AddComponent(new Camera(managerCamera));
-            GuiTexture = content.Load<Texture2D>("sword_gui"); 
+            GuiTexture = ManagerContent.LoadTexture("sword_gui"); 
         }
 
         public override void Update(double gameTime)

@@ -5,11 +5,13 @@
     <Health>5</Health>
     <Attack>1</Attack>
     <Defense>1</Defense>
+    <Speed>1.5</Speed>
   </Stats>
   <Stats>
     <StatsId>Octorok</StatsId>
     <Health>2</Health>
     <Attack>1</Attack>
     <Defense>1</Defense>
+    <Speed>0.5</Speed>
   </Stats>
 </ArrayOfStats>
