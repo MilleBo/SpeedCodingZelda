@@ -88,11 +88,11 @@ namespace LetsCreateZelda.Screens
 
         public override void LoadContent(ContentManager content)
         {
-            _mapTexture = content.Load<Texture2D>("overworld_map");
-            _firstCursorTexture = content.Load<Texture2D>("map_cursor_1");
-            _secondCursorTexture = content.Load<Texture2D>("map_cursor_2");
-            _mapBlockTexture = content.Load<Texture2D>("map_block");
-            _playerIconTexture = content.Load<Texture2D>("map_player_icon"); 
+            _mapTexture = ManagerContent.LoadTexture("overworld_map");
+            _firstCursorTexture = ManagerContent.LoadTexture("map_cursor_1");
+            _secondCursorTexture = ManagerContent.LoadTexture("map_cursor_2");
+            _mapBlockTexture = ManagerContent.LoadTexture("map_block");
+            _playerIconTexture = ManagerContent.LoadTexture("map_player_icon"); 
             _overworldMapObjects.LoadContent(content);
 
         }

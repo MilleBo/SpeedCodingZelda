@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LetsCreateZelda.Manager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,10 +24,10 @@ namespace LetsCreateZelda.Common
 
         public void LoadContent(ContentManager content)
         {
-            _mapIconDungeonTexture = content.Load<Texture2D>("map_icon_dungeon");
-            _mapIconOwlTexture = content.Load<Texture2D>("map_icon_owl");
-            _mapIconQuestionTexture = content.Load<Texture2D>("map_icon_question");
-            _mapIconShopTexture = content.Load<Texture2D>("map_icon_shop");
+            _mapIconDungeonTexture = ManagerContent.LoadTexture("map_icon_dungeon");
+            _mapIconOwlTexture = ManagerContent.LoadTexture("map_icon_owl");
+            _mapIconQuestionTexture = ManagerContent.LoadTexture("map_icon_question");
+            _mapIconShopTexture = ManagerContent.LoadTexture("map_icon_shop");
 
             _objects.Add(new Vector2(0,1), _mapIconDungeonTexture);
             _objects.Add(new Vector2(1,2),  _mapIconOwlTexture );

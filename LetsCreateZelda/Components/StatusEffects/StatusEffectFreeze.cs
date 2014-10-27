@@ -7,9 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreateZelda.Components.StatusEffects
 {
-    class StatusEffectFreeze : IStatusEffect
+    class StatusEffectFreeze : StatusEffectBase
     {
-        private readonly BaseObject _baseObject;
         private enum States { Start, Wait, End};
 
         private States _currentState;
@@ -19,17 +18,15 @@ namespace LetsCreateZelda.Components.StatusEffects
         private float _oldSpeed;
         private Color _oldColor; 
 
-        public StatusEffectFreeze(BaseObject baseObject)
+        public StatusEffectFreeze(BaseObject baseObject) : base(baseObject)
         {
-            _baseObject = baseObject;
             _currentState = States.Start;
         }
 
-        public bool Done { get; set; }
-        public void Update(double gameTime)
+        public override void Update(double gameTime)
         {
-            var stats = _baseObject.GetComponent<Stats>(ComponentType.Stats);
-            var sprite = _baseObject.GetComponent<Sprite>(ComponentType.Sprite);
+            var stats = BaseObject.GetComponent<Stats>(ComponentType.Stats);
+            var sprite = BaseObject.GetComponent<Sprite>(ComponentType.Sprite);
             switch (_currentState)
             {
                 case States.Start:
@@ -69,9 +66,14 @@ namespace LetsCreateZelda.Components.StatusEffects
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             
+        }
+
+        public override void Stacking()
+        {
+            _count = 0; 
         }
     }
 }

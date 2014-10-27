@@ -110,8 +110,8 @@ namespace LetsCreateZelda.Components.Items
             if (_entities.CheckCollision(sprite.Rectangle, out outAnimation, out outBaseObject, Owner.GetOwnerId()))
             {
                 var statusEffect = outBaseObject.GetComponent<StatusEffect>(ComponentType.StatusEffects);
-                statusEffect.StatusEffects.Add(new StatusEffectFreeze(outBaseObject));
-
+                if(statusEffect != null)
+                    statusEffect.AddStatusEffect(new StatusEffectFreeze(outBaseObject));
                 _currentState = BoomerangState.Back;
                 _counter = 0;
                 _alreadyHitObject = true; 

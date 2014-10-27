@@ -10,9 +10,11 @@ using System.Linq;
 using System.Text;
 using LetsCreateZelda.Components;
 using LetsCreateZelda.Components.Enemies;
+using LetsCreateZelda.Components.EventTriggers;
 using LetsCreateZelda.Components.Items;
 using LetsCreateZelda.Components.Movement;
 using LetsCreateZelda.Factories;
+using LetsCreateZelda.GameEvent;
 using LetsCreateZelda.Gui;
 using LetsCreateZelda.Manager;
 using LetsCreateZelda.Map;
@@ -72,29 +74,31 @@ namespace LetsCreateZelda.Screens
             player.AddComponent(FactoryStats.GetStats("Link"));
             player.AddComponent(new GUI());
             player.GetComponent<GUI>(ComponentType.GUI).LoadContent(content);
-            
 
-            //var testNPC = new BaseObject();
-            //testNPC.AddComponent(new Sprite(content.Load<Texture2D>("Marin"), 16, 16, new Vector2(50, 50)));
+
+            var testNPC = new BaseObject();
+            testNPC.AddComponent(new Sprite(ManagerContent.LoadTexture("Marin"), 16, 16, new Vector2(20, 20)));
             //testNPC.AddComponent(new AIMovementRandom(200));
-            //testNPC.AddComponent(new Animation(16, 16));
-            //testNPC.AddComponent(new Collision(_managerMap));
-            //testNPC.AddComponent(new Camera(_managerCamera));
+            testNPC.AddComponent(new Animation(16, 16));
+            testNPC.AddComponent(new Collision(_managerMap, _entities));
+            testNPC.AddComponent(new Camera(_managerCamera));
+            testNPC.AddComponent(new EventTriggerDistance(new List<IGameEvent> { new GameEventMessage("Don't get any closer!")},  new List<BaseObject> { player}, 20, 3000));
+            _entities.AddEntity(testNPC);
             _entities.AddEntity(player);
-            for (int n = 0; n < 1; n++)
-            {
-                var testEnemy = new BaseObject { Id = string.Format("enemy_{0}", n) };
-                testEnemy.AddComponent(new Sprite(ManagerContent.LoadTexture("Octorok"), 16, 16, new Vector2(50 + ManagerFunction.Random(10, 20), 50 + ManagerFunction.Random(10, 20))));
-                testEnemy.AddComponent(new AIMovementRandom(1000));
-                testEnemy.AddComponent(new Animation(16, 16, 2));
-                testEnemy.AddComponent(new Collision(_managerMap, _entities));
-                testEnemy.AddComponent(new Octorok(player, ManagerContent.LoadTexture("Octorok_bullet"), _managerMap, _entities));
-                testEnemy.AddComponent(new Camera(_managerCamera));
-                testEnemy.AddComponent(new Damage(_entities));
-                testEnemy.AddComponent(FactoryStats.GetStats("Octorok"));
-                testEnemy.AddComponent(new StatusEffect());
-                _entities.AddEntity(testEnemy);
-            }
+            //for (int n = 0; n < 1; n++)
+            //{
+            //    var testEnemy = new BaseObject { Id = string.Format("enemy_{0}", n) };
+            //    testEnemy.AddComponent(new Sprite(ManagerContent.LoadTexture("Octorok"), 16, 16, new Vector2(50 + ManagerFunction.Random(10, 20), 50 + ManagerFunction.Random(10, 20))));
+            //    testEnemy.AddComponent(new AIMovementRandom(1000));
+            //    testEnemy.AddComponent(new Animation(16, 16, 2));
+            //    testEnemy.AddComponent(new Collision(_managerMap, _entities));
+            //    testEnemy.AddComponent(new Octorok(player, ManagerContent.LoadTexture("Octorok_bullet"), _managerMap, _entities));
+            //    testEnemy.AddComponent(new Camera(_managerCamera));
+            //    testEnemy.AddComponent(new Damage(_entities));
+            //    testEnemy.AddComponent(FactoryStats.GetStats("Octorok"));
+            //    testEnemy.AddComponent(new StatusEffect());
+            //    _entities.AddEntity(testEnemy);
+            //}
 
 
             

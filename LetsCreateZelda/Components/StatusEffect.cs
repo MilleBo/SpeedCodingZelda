@@ -15,11 +15,26 @@ namespace LetsCreateZelda.Components
             get { return ComponentType.StatusEffects; }
         }
 
-        public List<IStatusEffect> StatusEffects { get; set; }  
+        private List<StatusEffectBase> StatusEffects { get; set; }  
 
         public StatusEffect()
         {
-            StatusEffects = new List<IStatusEffect>();
+            StatusEffects = new List<StatusEffectBase>();
+        }
+
+        public void AddStatusEffect(StatusEffectBase statusEffect)
+        {
+            var oldStatusEffect = StatusEffects.FirstOrDefault(s => statusEffect.GetType() == s.GetType()
+                                                                    && s.BaseObject.Id == statusEffect.BaseObject.Id
+                                                                    && s.Done == false);
+            if (oldStatusEffect != null)
+            {
+                oldStatusEffect.Stacking();
+            }
+            else
+            {
+                StatusEffects.Add(statusEffect);
+            }
         }
 
         public override void Update(double gameTime)

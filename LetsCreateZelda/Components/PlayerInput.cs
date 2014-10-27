@@ -84,11 +84,14 @@ namespace LetsCreateZelda.Components
                         equipment = GetComponent<Equipment>(ComponentType.Equipment); 
                         equipment.FireItem(ItemSlot.B);
                         break; 
-                    case Input.Start: 
-                        _managerScreen.LoadNewScreen(
-                            new ScreenMainMenu(_managerScreen,
-                                GetComponent<Stats>(ComponentType.Stats),
-                                GetComponent<Equipment>(ComponentType.Equipment)));
+                    case Input.Start:
+                        if (!ManagerEvents.Active)
+                        {
+                            _managerScreen.LoadNewScreen(
+                                new ScreenMainMenu(_managerScreen,
+                                    GetComponent<Stats>(ComponentType.Stats),
+                                    GetComponent<Equipment>(ComponentType.Equipment)));
+                        }
                         break; 
 
                     case Input.Select:

@@ -122,14 +122,14 @@ namespace LetsCreateZelda.Screens
 
         public override void LoadContent(ContentManager content)
         {
-            _rupeeTexture = content.Load<Texture2D>("rupee_gui");
-            _heartTexture = content.Load<Texture2D>("heart_gui");
-            _containerTexture = content.Load<Texture2D>("container_gui");
-            _font = content.Load<SpriteFont>("Font_GUI");
-            _tempTexture = content.Load<Texture2D>("boomerang_gui");
-            _backgroundTexture = content.Load<Texture2D>("white_background");
-            _barHor = content.Load<Texture2D>("menu_block_hor");
-            _barVert = content.Load<Texture2D>("menu_block_vert");
+            _rupeeTexture = ManagerContent.LoadTexture("rupee_gui");
+            _heartTexture = ManagerContent.LoadTexture("heart_gui");
+            _containerTexture = ManagerContent.LoadTexture("container_gui");
+            _font = ManagerContent.LoadFont("Font_GUI");
+            _tempTexture = ManagerContent.LoadTexture("boomerang_gui");
+            _backgroundTexture = ManagerContent.LoadTexture("white_background");
+            _barHor = ManagerContent.LoadTexture("menu_block_hor");
+            _barVert = ManagerContent.LoadTexture("menu_block_vert");
             _playerStatsGui.LoadContent(content);
         }
 

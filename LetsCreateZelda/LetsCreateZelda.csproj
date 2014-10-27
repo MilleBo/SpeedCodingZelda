@@ -50,6 +50,7 @@
     <Compile Include="Components\Enemies\Octorok.cs" />
     <Compile Include="Components\Enemies\OctorokBullet.cs" />
     <Compile Include="Components\Equipment.cs" />
+    <Compile Include="Components\EventTriggers\EventTriggerDistance.cs" />
     <Compile Include="Components\GUI.cs" />
     <Compile Include="Components\Items\Boomerang.cs" />
     <Compile Include="Components\Items\Item.cs" />
@@ -60,7 +61,7 @@
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Components\Stats.cs" />
     <Compile Include="Components\StatusEffect.cs" />
-    <Compile Include="Components\StatusEffects\IStatusEffect.cs" />
+    <Compile Include="Components\StatusEffects\StatusEffectBase.cs" />
     <Compile Include="Components\StatusEffects\StatusEffectFreeze.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Factories\FactoryDeathAnimation.cs" />
