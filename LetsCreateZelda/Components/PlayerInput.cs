@@ -107,8 +107,29 @@ namespace LetsCreateZelda.Components
                 }             
             }
 
-            if(collision == null || !collision.CheckCollisionWithTiles(new Rectangle((int) (sprite.Position.X + x), (int) (sprite.Position.Y + y),sprite.Width,sprite.Height)))
+            if (collision == null ||
+                !collision.CheckCollisionWithTiles(new Rectangle((int) (sprite.Position.X + x),
+                    (int) (sprite.Position.Y + y), sprite.Width, sprite.Height)))
+            {
                 sprite.Move(x, y);
+            }
+            else if (x != 0 || y != 0)
+            {
+                Direction direction;
+                if (x > 0)
+                    direction = Direction.Right;
+                else if (x < 0)
+                    direction = Direction.Left;
+                else if (y > 0)
+                    direction = Direction.Down;
+                else
+                    direction = Direction.Up;
+                animation.PlayAnimation(State.Pushing, direction);
+            }
+            else
+            {
+                animation.PlayAnimation(State.Standing, animation.CurrentDirection);
+            }
 
             Vector2 position; 
             if(!camera.GetPosition(sprite.Position,out position))

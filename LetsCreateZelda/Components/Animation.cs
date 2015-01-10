@@ -62,24 +62,24 @@ namespace LetsCreateZelda.Components
                 return;
             }
 
-            switch (CurrentState)
+            _counter += gameTime;
+            if (_counter > _animationSpeed)
             {
-                case State.Walking:
-                    _counter += gameTime;
-                    if (_counter > _animationSpeed)
-                    {
-                        ChangeState(0,_animationFrames);
+                switch (CurrentState)
+                {
+                    case State.Walking:
+                        ChangeState(0, _animationFrames);
                         _counter = 0;
-                    }
-                    break;
-                case State.Special:
-                     _counter += gameTime;
-                    if (_counter > _animationSpeed)
-                    {
-                        ChangeState(_height*4,1);
+                        break;
+                    case State.Special:
+                        ChangeState(_height * 4, 1);
                         _counter = 0;
-                    }
-                    break; 
+                        break;
+                    case State.Pushing:
+                        ChangeState(_height * 8);
+                        _counter = 0; 
+                        break;
+                }
             }
         }
 

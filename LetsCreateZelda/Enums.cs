@@ -52,7 +52,8 @@ namespace LetsCreateZelda
     {
         Standing, 
         Walking,
-        Special
+        Special,
+        Pushing
     }
 
     public enum ItemSlot
