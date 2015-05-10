@@ -16,13 +16,15 @@ namespace LetsCreateZelda
     {
         public string Id { get; set; }
         public bool Kill { get; set; }
+        public bool Hostile { get; set; }
 
         private readonly List<Component> _components; 
 
         public BaseObject()
         {
             _components = new List<Component>();
-            Kill = false; 
+            Kill = false;
+            Hostile = true; 
         }
 
         public TComponentType GetComponent<TComponentType>(ComponentType componentType) where TComponentType : Component

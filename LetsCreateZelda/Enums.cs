@@ -22,7 +22,8 @@ namespace LetsCreateZelda
         DeathAnimation,
         Script,
         StatusEffects,
-        EventTriggerDistance
+        EventTriggerDistance,
+        BlockPush
     }
 
     public enum Input

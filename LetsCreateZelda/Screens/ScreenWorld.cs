@@ -11,6 +11,7 @@ using System.Text;
 using LetsCreateZelda.Components;
 using LetsCreateZelda.Components.Enemies;
 using LetsCreateZelda.Components.EventTriggers;
+using LetsCreateZelda.Components.Interaction;
 using LetsCreateZelda.Components.Items;
 using LetsCreateZelda.Components.Movement;
 using LetsCreateZelda.Factories;
@@ -76,13 +77,14 @@ namespace LetsCreateZelda.Screens
             player.GetComponent<GUI>(ComponentType.GUI).LoadContent(content);
 
 
-            var testNPC = new BaseObject();
-            testNPC.AddComponent(new Sprite(ManagerContent.LoadTexture("Marin"), 16, 16, new Vector2(20, 20)));
+            var testNPC = new BaseObject {Hostile = false};
+            testNPC.AddComponent(new Sprite(ManagerContent.LoadTexture("Marin"), 16, 16, new Vector2(70, 40)));
             //testNPC.AddComponent(new AIMovementRandom(200));
             testNPC.AddComponent(new Animation(16, 16));
             testNPC.AddComponent(new Collision(_managerMap, _entities));
             testNPC.AddComponent(new Camera(_managerCamera));
-            testNPC.AddComponent(new EventTriggerDistance(new List<IGameEvent> { new GameEventMessage("Don't get any closer!")},  new List<BaseObject> { player}, 20, 3000));
+            //testNPC.AddComponent(new EventTriggerDistance(new List<IGameEvent> { new GameEventMessage("Don't get any closer!")},  new List<BaseObject> { player}, 20, 3000));
+            testNPC.AddComponent(new BlockPush(player));
             _entities.AddEntity(testNPC);
             _entities.AddEntity(player);
             //for (int n = 0; n < 1; n++)

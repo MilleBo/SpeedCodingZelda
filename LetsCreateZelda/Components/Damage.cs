@@ -72,7 +72,7 @@ namespace LetsCreateZelda.Components
                 return;
             Animation outAnimation;
             BaseObject outBaseObject; 
-            if (_hitDamage && _takingDamage == false && _entities.CheckCollision(sprite.Rectangle,out outAnimation, out outBaseObject, GetOwnerId()))
+            if (_hitDamage && _takingDamage == false && _entities.CheckCollision(sprite.Rectangle,out outAnimation, out outBaseObject, GetOwnerId(), true))
             {                
                 //TakingDamage(outAnimation != null ? outAnimation.CurrentDirection : Direction.Up);
                 var animation = GetComponent<Animation>(ComponentType.Animation);

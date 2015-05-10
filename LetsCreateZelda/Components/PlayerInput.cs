@@ -109,7 +109,8 @@ namespace LetsCreateZelda.Components
 
             if (collision == null ||
                 !collision.CheckCollisionWithTiles(new Rectangle((int) (sprite.Position.X + x),
-                    (int) (sprite.Position.Y + y), sprite.Width, sprite.Height)))
+                    (int) (sprite.Position.Y + y), sprite.Width, sprite.Height)) && !collision.CheckCollisionWithEntities(
+                        new Rectangle((int)(sprite.Position.X + x), (int)(sprite.Position.Y + y), sprite.Width, sprite.Height)))
             {
                 sprite.Move(x, y);
             }

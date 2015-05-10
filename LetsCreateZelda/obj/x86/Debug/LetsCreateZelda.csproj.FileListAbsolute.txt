@@ -11,10 +11,6 @@ D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\Maps\collisiontest\collisiontest_tiles.map
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\LetsCreateZelda.exe
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\LetsCreateZelda.pdb
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Lidgren.Network.dll
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\MonoGame.Framework.dll
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\OpenTK.dll
-D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Tao.Sdl.dll
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\obj\x86\Debug\LetsCreateZelda.exe
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\obj\x86\Debug\LetsCreateZelda.pdb
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\Textures\boomerang.png
@@ -61,3 +57,7 @@ D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\Fonts\Font.spritefont
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Content\Fonts\Font_GUI.xnb
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\obj\x86\Debug\LetsCreateZelda.csprojResolveAssemblyReference.cache
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Lidgren.Network.dll
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\MonoGame.Framework.dll
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\OpenTK.dll
+D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Tao.Sdl.dll

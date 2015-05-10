@@ -52,7 +52,7 @@ namespace LetsCreateZelda.Map
             }
         }
 
-        public bool CheckCollision(Rectangle rectangle, out Animation outAnimation, out BaseObject outBaseObject, string id)
+        public bool CheckCollision(Rectangle rectangle, out Animation outAnimation, out BaseObject outBaseObject, string id, bool checkOnlyHostile=false)
         {
             outAnimation = null;
             outBaseObject = null; 
@@ -63,7 +63,7 @@ namespace LetsCreateZelda.Map
                 if(baseObject == null)
                     continue;
 
-                if(baseObject.Id == id)
+                if(baseObject.Id != null && baseObject.Id == id)
                     continue;
                 
                 var sprite = baseObject.GetComponent<Sprite>(ComponentType.Sprite); 
@@ -71,6 +71,9 @@ namespace LetsCreateZelda.Map
                     continue;
                 if (sprite.Rectangle.Intersects(rectangle))
                 {
+                    if(checkOnlyHostile)
+                        if (!baseObject.Hostile)
+                            continue;
                     outAnimation = baseObject.GetComponent<Animation>(ComponentType.Animation);
                     outBaseObject = baseObject; 
                     return true;
@@ -91,7 +94,7 @@ namespace LetsCreateZelda.Map
 
             foreach (var entity in _entities)
             {
-                if(!string.IsNullOrWhiteSpace(ownerId) && entity.Id.Equals("player"))
+                if(!string.IsNullOrWhiteSpace(ownerId) && entity.Id != null && entity.Id.Equals("player"))
                     continue;
 
                 if (entity.GetComponent<Sprite>(ComponentType.Sprite).Rectangle.Intersects(rectangle))
