@@ -61,3 +61,5 @@ D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\MonoGame.Framework.dll
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\OpenTK.dll
 D:\Let's create\Zelda\Videos\LetsCreateZelda\LetsCreateZelda\bin\WindowsGL\Debug\Tao.Sdl.dll
+C:\Users\Mille\Documents\Zelda\SpeedCodingZelda\LetsCreateZelda\obj\x86\Debug\LetsCreateZelda.exe
+C:\Users\Mille\Documents\Zelda\SpeedCodingZelda\LetsCreateZelda\obj\x86\Debug\LetsCreateZelda.pdb
