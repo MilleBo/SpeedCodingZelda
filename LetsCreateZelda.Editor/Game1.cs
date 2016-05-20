@@ -1,18 +1,13 @@
 ﻿#region Using Statements
-using System;
-using System.Collections.Generic;
-using System.Net.Mime;
+
 using System.Threading;
 using System.Windows.Forms;
 using LetsCreateZelda.Editor.Common;
 using LetsCreateZelda.Editor.GUI;
 using LetsCreateZelda.Manager;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.GamerServices;
 using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 
