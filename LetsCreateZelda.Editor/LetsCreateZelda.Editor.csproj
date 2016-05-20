@@ -105,10 +105,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LetsCreateZeldaContent\LetsCreateZeldaContent\LetsCreateZeldaContent.csproj">
-      <Project>{55b4fcbb-6faf-4550-8d74-892c40d74318}</Project>
-      <Name>LetsCreateZeldaContent</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LetsCreateZelda\LetsCreateZelda.csproj">
       <Project>{53efcaf1-04be-44f8-b2b2-9c4cb379e5eb}</Project>
       <Name>LetsCreateZelda</Name>
