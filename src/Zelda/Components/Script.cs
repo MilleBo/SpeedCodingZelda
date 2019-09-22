@@ -1,20 +1,14 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace Zelda.Components
 {
-    class Script : Component
+    public class Script : Component
     {
+        /*
         //private ScriptEngine _engine;
         //private string _path;
         //private dynamic _scope;
-        //private object _scriptClass; 
+        //private object _scriptClass;
 
         //public override ComponentType ComponentType
         //{
@@ -30,7 +24,7 @@ namespace Zelda.Components
         //    _scope.owner = this;
         //    _engine.ExecuteFile(_path, _scope);
         //    _scriptClass = _engine.Operations.CreateInstance(_scope.GetVariable("Script"));
-        //    _engine.Operations.InvokeMember(_scriptClass, "initialize"); 
+        //    _engine.Operations.InvokeMember(_scriptClass, "initialize");
         //}
 
         //public override void Update(double gameTime)
@@ -40,8 +34,9 @@ namespace Zelda.Components
 
         //public override void Draw(SpriteBatch spritebatch)
         //{
-           
         //}
+
+    */
         public override void Update(double gameTime)
         {
             throw new System.NotImplementedException();
@@ -53,7 +48,3 @@ namespace Zelda.Components
         }
     }
 }
-
-
-
-

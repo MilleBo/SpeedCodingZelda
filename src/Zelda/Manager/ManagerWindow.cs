@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using Zelda.Gui;
@@ -16,12 +9,11 @@ namespace Zelda.Manager
     {
         private static readonly Dictionary<string, Window> WindowList = new Dictionary<string, Window>();
 
-
         public static void NewWindow(string id, Window window)
         {
-            if(!WindowList.ContainsKey(id))
+            if (!WindowList.ContainsKey(id))
             {
-                WindowList.Add(id,window);
+                WindowList.Add(id, window);
                 window.Reset();
             }
         }
@@ -31,7 +23,7 @@ namespace Zelda.Manager
             foreach (var window in WindowList)
             {
                 window.Value.Active = false;
-                window.Value.Done = true; 
+                window.Value.Done = true;
                 window.Value.DeInitialize();
             }
 
@@ -40,12 +32,12 @@ namespace Zelda.Manager
 
         public static Window GetWindow(string id)
         {
-            return WindowList.ContainsKey(id) ? WindowList[id] : null; 
+            return WindowList.ContainsKey(id) ? WindowList[id] : null;
         }
 
         public static bool Contains(string id)
         {
-            return WindowList.ContainsKey(id); 
+            return WindowList.ContainsKey(id);
         }
 
         public void Update(double gameTime)
@@ -53,8 +45,10 @@ namespace Zelda.Manager
             var i = 0;
             while (i < WindowList.Count)
             {
-                if(WindowList.ElementAt(i).Value.Active && !WindowList.ElementAt(i).Value.Done)
+                if (WindowList.ElementAt(i).Value.Active && !WindowList.ElementAt(i).Value.Done)
+                {
                     WindowList.ElementAt(i).Value.Update(gameTime);
+                }
 
                 if (WindowList.Count > i && !WindowList.ElementAt(i).Value.AMenu && WindowList.ElementAt(i).Value.Done)
                 {
@@ -62,13 +56,15 @@ namespace Zelda.Manager
                     WindowList.Remove(WindowList.ElementAt(i).Key);
                 }
                 else
-                    i++; 
+                {
+                    i++;
+                }
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(WindowList.Count > 0)
+            if (WindowList.Count > 0)
             {
                 var list = WindowList.ToList();
                 foreach (var window in list)
@@ -77,9 +73,5 @@ namespace Zelda.Manager
                 }
             }
         }
-
-
     }
 }
-
-

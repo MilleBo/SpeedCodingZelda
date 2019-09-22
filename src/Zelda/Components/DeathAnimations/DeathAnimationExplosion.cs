@@ -1,27 +1,20 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace Zelda.Components.DeathAnimations
 {
-    class DeathAnimationExplosion : Component
+    public class DeathAnimationExplosion : Component
     {
-        private enum DeathAnimationState
-        {
-            Initialize,
-            Check
-        };
-
-        private DeathAnimationState _currentState; 
+        private DeathAnimationState _currentState;
 
         public DeathAnimationExplosion()
         {
             _currentState = DeathAnimationState.Initialize;
+        }
+
+        private enum DeathAnimationState
+        {
+            Initialize,
+            Check
         }
 
         public override void Update(double gameTime)
@@ -54,12 +47,6 @@ namespace Zelda.Components.DeathAnimations
 
         public override void Draw(SpriteBatch spritebatch)
         {
-           
         }
     }
 }
-
-
-
-
-

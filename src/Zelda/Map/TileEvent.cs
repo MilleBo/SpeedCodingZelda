@@ -1,26 +1,18 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Zelda.GameEvent;
 using Zelda.Manager;
 
 namespace Zelda.Map
 {
-    class TileEvent : TileCollision
+    public class TileEvent : TileCollision
     {
         private readonly Dictionary<int, List<IGameEvent>> _gameEvents;
-
 
         public TileEvent(int xPos, int yPos, Dictionary<int, List<IGameEvent>> gameEvents)
         {
             XPos = xPos;
             YPos = yPos;
-            _gameEvents = gameEvents; 
+            _gameEvents = gameEvents;
         }
 
         public void StartEvent()
@@ -32,18 +24,16 @@ namespace Zelda.Map
                 foreach (int key in keys)
                 {
                     if (key > biggest && ManagerLists.GetEventSwitchValue(key))
-                        biggest = key; 
+                    {
+                        biggest = key;
+                    }
                 }
 
-                if(biggest != -1)
-                    ManagerEvents.AddEvents(_gameEvents[biggest]); 
+                if (biggest != -1)
+                {
+                    ManagerEvents.AddEvents(_gameEvents[biggest]);
+                }
             }
-                
         }
     }
 }
-
-
-
-
-

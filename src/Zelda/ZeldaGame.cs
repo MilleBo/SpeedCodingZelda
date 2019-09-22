@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Zelda.Factories;
 using Zelda.Manager;
 using Zelda.Screens;
@@ -12,14 +11,13 @@ namespace Zelda
     /// </summary>
     public class ZeldaGame : Game
     {
-        RenderTarget2D backBuffer;
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        private ManagerInput _managerInput;
+        private readonly GraphicsDeviceManager graphics;
+        private readonly ManagerInput _managerInput;
+        private RenderTarget2D backBuffer;
+        private SpriteBatch spriteBatch;
         private ManagerScreen _managerScreen;
         private ManagerWindow _managerWindow;
         private ManagerLists _managerLists;
-
 
         public ZeldaGame()
             : base()
@@ -28,8 +26,8 @@ namespace Zelda
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            this.graphics.PreferredBackBufferHeight = 144;
-            this.graphics.PreferredBackBufferWidth = 160;
+            graphics.PreferredBackBufferHeight = 144;
+            graphics.PreferredBackBufferWidth = 160;
             _managerInput = new ManagerInput();
         }
 
@@ -52,16 +50,13 @@ namespace Zelda
         protected override void LoadContent()
         {
             backBuffer = new RenderTarget2D(GraphicsDevice, 160, 144);
-            // Create a new SpriteBatch, which can be used to draw textures.
             ManagerContent.Initialize(Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _managerScreen = new ManagerScreen(Content);
             _managerWindow = new ManagerWindow();
             _managerLists = new ManagerLists();
             _managerLists.Initialize();
-            //_managerScreen.LoadNewScreen(new ScreenWorld(_managerScreen));
             _managerScreen.LoadNewScreen(new ScreenStart(_managerScreen), false);
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -80,16 +75,9 @@ namespace Zelda
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            /*
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-                */
-
             _managerInput.Update(gameTime.ElapsedGameTime.Milliseconds);
             _managerWindow.Update(gameTime.ElapsedGameTime.Milliseconds);
             _managerScreen.Update(gameTime.ElapsedGameTime.Milliseconds);
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }

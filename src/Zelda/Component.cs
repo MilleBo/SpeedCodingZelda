@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace Zelda
 {
@@ -14,15 +7,18 @@ namespace Zelda
         private BaseObject _baseObject;
 
         public void Initialize(BaseObject baseObject)
-        { 
-            _baseObject = baseObject; 
+        {
+            _baseObject = baseObject;
         }
 
         public string GetOwnerId()
         {
             if (_baseObject == null)
-                return ""; 
-            return _baseObject.Id; 
+            {
+                return string.Empty;
+            }
+
+            return _baseObject.Id;
         }
 
         public void RemoveMe()
@@ -32,23 +28,25 @@ namespace Zelda
 
         public void KillBaseObject()
         {
-            _baseObject.Kill = true; 
+            _baseObject.Kill = true;
         }
 
-        public TComponentType GetComponent<TComponentType>() where TComponentType : Component
+        public TComponentType GetComponent<TComponentType>()
+            where TComponentType : Component
         {
             return _baseObject?.GetComponent<TComponentType>();
         }
 
         public abstract void Update(double gameTime);
+
         public abstract void Draw(SpriteBatch spritebatch);
 
-        public virtual void Initialize() { }
+        public virtual void Initialize()
+        {
+        }
 
-        public virtual void Uninitalize() { }
-
+        public virtual void Uninitalize()
+        {
+        }
     }
 }
-
-
-

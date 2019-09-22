@@ -4,20 +4,24 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Zelda.Components.StatusEffects
 {
-    class StatusEffectFreeze : StatusEffectBase
+    public class StatusEffectFreeze : StatusEffectBase
     {
-        private enum States { Start, Wait, End};
-
         private States _currentState;
-
         private double _count;
-
         private float _oldSpeed;
-        private Color _oldColor; 
+        private Color _oldColor;
 
-        public StatusEffectFreeze(BaseObject baseObject) : base(baseObject)
+        public StatusEffectFreeze(BaseObject baseObject)
+            : base(baseObject)
         {
             _currentState = States.Start;
+        }
+
+        private enum States
+        {
+            Start,
+            Wait,
+            End
         }
 
         public override void Update(double gameTime)
@@ -27,17 +31,18 @@ namespace Zelda.Components.StatusEffects
             switch (_currentState)
             {
                 case States.Start:
-                    
                     if (stats != null)
                     {
-                        _oldSpeed = stats.Speed; 
-                        stats.Speed = 0; 
+                        _oldSpeed = stats.Speed;
+                        stats.Speed = 0;
                     }
+
                     if (sprite != null)
                     {
-                        _oldColor = sprite.Color; 
+                        _oldColor = sprite.Color;
                         sprite.Color = Color.Blue;
                     }
+
                     _currentState = States.Wait;
                     break;
                 case States.Wait:
@@ -46,17 +51,20 @@ namespace Zelda.Components.StatusEffects
                     {
                         _currentState = States.End;
                     }
+
                     break;
                 case States.End:
                     if (stats != null)
                     {
                         stats.Speed = _oldSpeed;
-                    }            
+                    }
+
                     if (sprite != null)
                     {
-                        sprite.Color = _oldColor; 
+                        sprite.Color = _oldColor;
                     }
-                    Done = true; 
+
+                    Done = true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -65,12 +73,11 @@ namespace Zelda.Components.StatusEffects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            
         }
 
         public override void Stacking()
         {
-            _count = 0; 
+            _count = 0;
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-namespace Zelda
+﻿namespace Zelda
 {
     public enum Input
     {
@@ -22,16 +16,15 @@ namespace Zelda
 
     public enum Direction
     {
-        Left, 
-        Right,
+        Down,
         Up,
-        Down
+        Left,
+        Right,
     }
-
 
     public enum State
     {
-        Standing, 
+        Standing,
         Walking,
         Special,
         Pushing
@@ -57,15 +50,7 @@ namespace Zelda
 
     public enum DeathAnimation
     {
-        Link, 
+        Link,
         Explosion
     }
 }
-
-//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-//------------------------------------------------------
-
-

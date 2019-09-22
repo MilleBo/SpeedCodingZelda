@@ -1,49 +1,55 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace Zelda.Manager
 {
     public class ManagerCamera
     {
-        private Vector2 _position;
-        private Direction _moveDirection;
+        private readonly float _speed;
         private Vector2 _moveToPosition;
-        private float _speed;
-        public bool Locked => (int)_position.X != (int)_moveToPosition.X || (int)_position.Y != (int)_moveToPosition.Y;
-
-        public Vector2 Position => _position;
-        public Vector2 TilePosition => new Vector2(_position.X/160, _position.Y/120);
 
         public ManagerCamera()
         {
-            _speed = 5f; 
-            _position = new Vector2(0,0);
+            _speed = 5f;
+            Position = new Vector2(0, 0);
         }
+
+        public bool Locked => (int)Position.X != (int)_moveToPosition.X || (int)Position.Y != (int)_moveToPosition.Y;
+
+        public Vector2 Position { get; set; }
+
+        public Vector2 TilePosition => new Vector2(Position.X / 160, Position.Y / 120);
 
         public void Update(double gameTime)
         {
             if (!Locked)
-                return;
-
-            if (_position.X < _moveToPosition.X)
-                _position.X += _speed;
-            if (_position.X > _moveToPosition.X)
-                _position.X -= _speed;
-            if (_position.Y > _moveToPosition.Y)
-                _position.Y -= _speed;
-            if (_position.Y < _moveToPosition.Y)
-                _position.Y += _speed; 
-
-            if(ManagerFunction.Distance(_position,_moveToPosition) < 5)
             {
-                _position = _moveToPosition; 
+                return;
+            }
+
+            if (Position.X < _moveToPosition.X)
+            {
+                Position = new Vector2(Position.X + _speed, Position.Y);
+            }
+
+            if (Position.X > _moveToPosition.X)
+            {
+                Position = new Vector2(Position.X - _speed, Position.Y);
+            }
+
+            if (Position.Y > _moveToPosition.Y)
+            {
+                Position = new Vector2(Position.X, Position.Y - _speed);
+            }
+
+            if (Position.Y < _moveToPosition.Y)
+            {
+                Position = new Vector2(Position.X, Position.Y + _speed);
+            }
+
+            if (ManagerFunction.Distance(Position, _moveToPosition) < 5)
+            {
+                Position = _moveToPosition;
             }
         }
 
@@ -52,32 +58,29 @@ namespace Zelda.Manager
             switch (direction)
             {
                case Direction.Left:
-                    _moveToPosition = new Vector2(_position.X - 160, _position.Y);
-                    break; 
-                case Direction.Right:
-                    _moveToPosition = new Vector2(_position.X + 160, _position.Y);
-                    break; 
-                case Direction.Up:
-                    _moveToPosition = new Vector2(_position.X, _position.Y - 128);
-                    break; 
-
-                case Direction.Down:
-                    _moveToPosition = new Vector2(_position.X, _position.Y + 128);
-                    break; 
+                    _moveToPosition = new Vector2(Position.X - 160, Position.Y);
+                    break;
+               case Direction.Right:
+                    _moveToPosition = new Vector2(Position.X + 160, Position.Y);
+                    break;
+               case Direction.Up:
+                    _moveToPosition = new Vector2(Position.X, Position.Y - 128);
+                    break;
+               case Direction.Down:
+                    _moveToPosition = new Vector2(Position.X, Position.Y + 128);
+                    break;
             }
         }
 
         public bool InScreenCheck(Vector2 vector)
         {
-            return ((vector.X > _position.X - 16 && vector.X < _position.X + 160 + 16) &&
-                    (vector.Y > _position.Y - 16 && vector.Y < _position.Y + 128 + 16)); 
+            return (vector.X > Position.X - 16 && vector.X < Position.X + 160 + 16) && (vector.Y > Position.Y - 16 && vector.Y < Position.Y + 128 + 16);
         }
 
         public Vector2 WorldToScreenPosition(Vector2 position)
         {
-            return new Vector2(position.X - _position.X, position.Y - _position.Y);
+            return new Vector2(position.X - Position.X, position.Y - Position.Y);
         }
-
 
         public bool MouseInsideWindow()
         {
@@ -87,6 +90,3 @@ namespace Zelda.Manager
         }
     }
 }
-
-
-

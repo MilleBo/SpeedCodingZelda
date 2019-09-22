@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Zelda.Manager;
@@ -13,12 +6,10 @@ using Zelda.Screens;
 
 namespace Zelda.Components
 {
-    class PlayerInput : Component
+    public class PlayerInput : Component
     {
-
-        private ManagerScreen _managerScreen;
-        private ManagerPlayer _managerPlayer;
-
+        private readonly ManagerScreen _managerScreen;
+        private readonly ManagerPlayer _managerPlayer;
 
         public PlayerInput(ManagerScreen managerScreen, ManagerPlayer managerPlayer)
         {
@@ -26,22 +17,46 @@ namespace Zelda.Components
             _managerPlayer = managerPlayer;
         }
 
-        void ManagerInput_FireNewInput(object sender, MyEventArgs.NewInputEventArgs e)
+        public override void Initialize()
+        {
+            ManagerInput.FireNewInput -= ManagerInput_FireNewInput;
+            ManagerInput.FireNewInput += ManagerInput_FireNewInput;
+        }
+
+        public override void Uninitalize()
+        {
+            ManagerInput.FireNewInput -= ManagerInput_FireNewInput;
+        }
+
+        public override void Update(double gameTime)
+        {
+        }
+
+        public override void Draw(SpriteBatch spritebatch)
+        {
+        }
+
+        private void ManagerInput_FireNewInput(object sender, MyEventArgs.NewInputEventArgs e)
         {
             var sprite = GetComponent<Sprite>();
             if (sprite == null)
+            {
                 return;
+            }
 
-            var collision = GetComponent<Collision>(); 
+            var collision = GetComponent<Collision>();
 
             var x = 0f;
             var y = 0f;
 
             var camera = GetComponent<Camera>();
             if (camera == null)
+            {
                 return;
+            }
+
             var animation = GetComponent<Animation>();
-            Equipment equipment; 
+            Equipment equipment;
             if (!camera.CameraInTransition())
             {
                 switch (e.Input)
@@ -62,45 +77,56 @@ namespace Zelda.Components
                         x = 1.5f;
                         break;
                     case Input.A:
-                        if(animation.CurrentState == State.Walking)
+                        if (animation.CurrentState == State.Walking)
+                        {
                             animation.StopAnimation();
-                        equipment = GetComponent<Equipment>(); 
+                        }
+
+                        equipment = GetComponent<Equipment>();
                         equipment.FireItem(ItemSlot.A);
                         break;
                     case Input.S:
                         if (animation.CurrentState == State.Walking)
+                        {
                             animation.StopAnimation();
-                        //ManagerEvents.AddEvents(new List<IGameEvent> {new GameEventMessage("I just started a new event with my s button")});
-                        equipment = GetComponent<Equipment>(); 
+                        }
+
+                        equipment = GetComponent<Equipment>();
                         equipment.FireItem(ItemSlot.B);
-                        break; 
+                        break;
                     case Input.Start:
                         if (!ManagerEvents.Active)
                         {
                             _managerScreen.LoadNewScreen(
-                                new ScreenMainMenu(_managerScreen,
+                                new ScreenMainMenu(
+                                    _managerScreen,
                                     GetComponent<Stats>(),
                                     GetComponent<Equipment>()));
                         }
-                        break; 
+
+                        break;
 
                     case Input.Select:
                         camera = GetComponent<Camera>();
-                        if(camera != null)
-                            _managerScreen.LoadNewScreen(new ScreenOverworldMap(_managerScreen,_managerPlayer,
-                                camera.CameraTilePositon));
-                        break; 
-                                                
+                        if (camera != null)
+                        {
+                            _managerScreen.LoadNewScreen(
+                                new ScreenOverworldMap(
+                                    _managerScreen,
+                                    _managerPlayer,
+                                    camera.CameraTilePositon));
+                        }
+
+                        break;
+
                     default:
                         return;
-
-                }             
+                }
             }
 
-            if (collision == null ||
-                !collision.CheckCollisionWithTiles(new Rectangle((int) (sprite.Position.X + x),
-                    (int) (sprite.Position.Y + y), sprite.Width, sprite.Height)) && !collision.CheckCollisionWithEntities(
-                        new Rectangle((int)(sprite.Position.X + x), (int)(sprite.Position.Y + y), sprite.Width, sprite.Height)))
+            if (
+                collision == null ||
+                (!collision.CheckCollisionWithTiles(new Rectangle((int)(sprite.Position.X + x), (int)(sprite.Position.Y + y), sprite.Width, sprite.Height)) && !collision.CheckCollisionWithEntities(new Rectangle((int)(sprite.Position.X + x), (int)(sprite.Position.Y + y), sprite.Width, sprite.Height))))
             {
                 sprite.Move(x, y);
             }
@@ -108,13 +134,22 @@ namespace Zelda.Components
             {
                 Direction direction;
                 if (x > 0)
+                {
                     direction = Direction.Right;
+                }
                 else if (x < 0)
+                {
                     direction = Direction.Left;
+                }
                 else if (y > 0)
+                {
                     direction = Direction.Down;
+                }
                 else
+                {
                     direction = Direction.Up;
+                }
+
                 animation.PlayAnimation(State.Pushing, direction);
             }
             else
@@ -122,9 +157,9 @@ namespace Zelda.Components
                 animation.PlayAnimation(State.Standing, animation.CurrentDirection);
             }
 
-            Vector2 position; 
-            if(!camera.GetPosition(sprite.Position,out position))
-            {               
+            Vector2 position;
+            if (!camera.GetPosition(sprite.Position, out position))
+            {
                 camera.MoveCamera(animation.CurrentDirection);
                 UpdateMap(camera, animation.CurrentDirection);
             }
@@ -150,32 +185,5 @@ namespace Zelda.Components
                     throw new ArgumentOutOfRangeException("direction");
             }
         }
-
-        public override void Initialize()
-        {
-            ManagerInput.FireNewInput -= ManagerInput_FireNewInput;
-            ManagerInput.FireNewInput += ManagerInput_FireNewInput;
-        }
-
-        public override void Uninitalize()
-        {
-            ManagerInput.FireNewInput -= ManagerInput_FireNewInput;
-        }
-
-
-        public override void Update(double gameTime)
-        {
-
-        }
-
-        public override void Draw(SpriteBatch spritebatch)
-        {
-
-        }
     }
 }
-
-
-
-
-

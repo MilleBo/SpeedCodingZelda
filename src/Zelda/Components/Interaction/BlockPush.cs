@@ -1,14 +1,13 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+#pragma warning disable 169
 
 namespace Zelda.Components.Interaction
 {
-    class BlockPush : Component
+    public class BlockPush : Component
     {
         private readonly BaseObject _player;
-        private enum Phase { Waiting, Moving}
-
         private Phase _currentPhase;
         private Direction _direction;
         private int _moveCounter;
@@ -22,6 +21,12 @@ namespace Zelda.Components.Interaction
             _currentPhase = Phase.Waiting;
         }
 
+        private enum Phase
+        {
+            Waiting,
+            Moving
+        }
+
         public override void Update(double gameTime)
         {
             var sprite = GetComponent<Sprite>();
@@ -30,7 +35,9 @@ namespace Zelda.Components.Interaction
             var playerAnimation = _player.GetComponent<Animation>();
 
             if (sprite == null || playerSprite == null || playerAnimation == null || collision == null)
-                return; 
+            {
+                return;
+            }
 
             switch (_currentPhase)
             {
@@ -59,36 +66,35 @@ namespace Zelda.Components.Interaction
                                 default:
                                     throw new ArgumentOutOfRangeException();
                             }
-                            if (collision.CheckCollisionWithTiles(new Rectangle((int) (sprite.Position.X + _moveX),
-                                (int) (sprite.Position.Y + _moveY), sprite.Width, sprite.Height)))
+
+                            if (collision.CheckCollisionWithTiles(new Rectangle((int)(sprite.Position.X + _moveX),  (int)(sprite.Position.Y + _moveY), sprite.Width, sprite.Height)))
                             {
                                 _collisionCounter = 0;
                                 return;
                             }
-                            else
-                            {
-                                _currentPhase = Phase.Moving;
-                                _moveCounter = 16; 
-                            }
 
+                            _currentPhase = Phase.Moving;
+                            _moveCounter = 16;
                         }
                     }
                     else
                     {
-                        _collisionCounter = 0; 
+                        _collisionCounter = 0;
                     }
+
                     break;
                 case Phase.Moving:
                     if (_moveCounter > 0)
                     {
-                        sprite.Move(_moveX/32, _moveY/32);
+                        sprite.Move(_moveX / 32, _moveY / 32);
                         _moveCounter--;
                     }
                     else
                     {
                         _currentPhase = Phase.Waiting;
-                        _collisionCounter = 0; 
+                        _collisionCounter = 0;
                     }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -97,7 +103,6 @@ namespace Zelda.Components.Interaction
 
         public override void Draw(SpriteBatch spritebatch)
         {
-            
         }
     }
 }

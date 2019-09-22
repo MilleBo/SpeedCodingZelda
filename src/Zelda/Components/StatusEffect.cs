@@ -5,14 +5,14 @@ using Zelda.Components.StatusEffects;
 
 namespace Zelda.Components
 {
-    class StatusEffect : Component
+    public class StatusEffect : Component
     {
-        private List<StatusEffectBase> StatusEffects { get; }  
-
         public StatusEffect()
         {
             StatusEffects = new List<StatusEffectBase>();
         }
+
+        private List<StatusEffectBase> StatusEffects { get; }
 
         public void AddStatusEffect(StatusEffectBase statusEffect)
         {
@@ -32,9 +32,12 @@ namespace Zelda.Components
         public override void Update(double gameTime)
         {
             if (StatusEffects.Count == 0)
+            {
                 return;
+            }
+
             int i = 0;
-            while(i < StatusEffects.Count)
+            while (i < StatusEffects.Count)
             {
                 StatusEffects[i].Update(gameTime);
                 if (StatusEffects[i].Done)
@@ -43,14 +46,13 @@ namespace Zelda.Components
                 }
                 else
                 {
-                    i++; 
+                    i++;
                 }
             }
         }
 
         public override void Draw(SpriteBatch spritebatch)
         {
-            
         }
     }
 }

@@ -6,13 +6,13 @@ using Zelda.Manager;
 
 namespace Zelda.Common
 {
-    class OverworldMapObjects
+    public class OverworldMapObjects
     {
-        private Dictionary<Vector2, Texture2D> _objects;
+        private readonly Dictionary<Vector2, Texture2D> _objects;
         private Texture2D _mapIconDungeonTexture;
         private Texture2D _mapIconOwlTexture;
         private Texture2D _mapIconQuestionTexture;
-        private Texture2D _mapIconShopTexture; 
+        private Texture2D _mapIconShopTexture;
 
         public OverworldMapObjects()
         {
@@ -26,19 +26,17 @@ namespace Zelda.Common
             _mapIconQuestionTexture = ManagerContent.LoadTexture("map_icon_question");
             _mapIconShopTexture = ManagerContent.LoadTexture("map_icon_shop");
 
-            _objects.Add(new Vector2(0,1), _mapIconDungeonTexture);
-            _objects.Add(new Vector2(1,2),  _mapIconOwlTexture );
+            _objects.Add(new Vector2(0, 1), _mapIconDungeonTexture);
+            _objects.Add(new Vector2(1, 2),  _mapIconOwlTexture);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 cursorPosition)
         {
-            var key = new Vector2((int) cursorPosition.X, (int) cursorPosition.Y);
+            var key = new Vector2((int)cursorPosition.X, (int)cursorPosition.Y);
             if (_objects.ContainsKey(key))
             {
-                spriteBatch.Draw(_objects[key],new Rectangle(100,100,30,30),Color.White);
+                spriteBatch.Draw(_objects[key], new Rectangle(100, 100, 30, 30), Color.White);
             }
         }
-
-
     }
 }

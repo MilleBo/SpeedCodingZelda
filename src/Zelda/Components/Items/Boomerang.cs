@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Zelda.Components.StatusEffects;
 using Zelda.Manager;
@@ -16,43 +9,50 @@ namespace Zelda.Components.Items
     internal class Boomerang : Item
     {
         private readonly Entities _entities;
+        private readonly float _speed;
         private Direction _currentDirection;
         private double _counter;
-        private float _speed;
-        private bool _alreadyHitObject; 
-        private enum BoomerangState
-        {
-            Forward,
-            Back,
-            Stop
-        };
+#pragma warning disable 414
+        private bool _alreadyHitObject;
+#pragma warning restore 414
         private BoomerangState _currentState;
 
         public Boomerang(Entities entities)
         {
             _entities = entities;
             ItemId = 1;
-            _speed = 2.5f; 
-            MenuPosition = new Vector2(0,0);
-            _alreadyHitObject = false; 
+            _speed = 2.5f;
+            MenuPosition = new Vector2(0, 0);
+            _alreadyHitObject = false;
+        }
+
+        private enum BoomerangState
+        {
+            Forward,
+            Back,
+            Stop
         }
 
         public override void Action()
         {
             var ownerAnimation = Owner.GetComponent<Animation>();
-            var ownerSprite = Owner.GetComponent<Sprite>(); 
+            var ownerSprite = Owner.GetComponent<Sprite>();
             if (ownerAnimation == null || ownerSprite == null)
+            {
                 return;
+            }
+
             ownerAnimation.PlayAnimation(State.Special, ownerAnimation.CurrentDirection);
             var sprite = GetComponent<Sprite>();
             var animation = GetComponent<Animation>();
-            if(sprite != null && animation != null)
+            if (sprite != null && animation != null)
             {
                 sprite.Teleport(ownerSprite.Position);
                 animation.CurrentDirection = Direction.Down;
-                animation.LockDirection = true; 
+                animation.LockDirection = true;
             }
-            _currentDirection = ownerAnimation.CurrentDirection; 
+
+            _currentDirection = ownerAnimation.CurrentDirection;
             _currentState = BoomerangState.Forward;
             Active = true;
             _counter = 0;
@@ -60,12 +60,12 @@ namespace Zelda.Components.Items
 
         public override void LoadContent(Equipment owner, ContentManager content, ManagerMap managerMap, ManagerCamera managerCamera, Entities entities)
         {
-            base.LoadContent(owner,content,managerMap,managerCamera,entities);
-            AddComponent(new Sprite(ManagerContent.LoadTexture("boomerang"),16,16,new Vector2(0,0)));
-            AddComponent(new Collision(managerMap,entities));
-            AddComponent(new Animation(16,16,3));
+            base.LoadContent(owner, content, managerMap, managerCamera, entities);
+            AddComponent(new Sprite(ManagerContent.LoadTexture("boomerang"), 16, 16, new Vector2(0, 0)));
+            AddComponent(new Collision(managerMap, entities));
+            AddComponent(new Animation(16, 16, 3));
             AddComponent(new Camera(managerCamera));
-            GuiTexture = ManagerContent.LoadTexture("boomerang_gui"); 
+            GuiTexture = ManagerContent.LoadTexture("boomerang_gui");
         }
 
         public override void Update(double gameTime)
@@ -79,7 +79,7 @@ namespace Zelda.Components.Items
                 return;
             }
 
-            _counter += gameTime; 
+            _counter += gameTime;
 
             CheckCollision();
 
@@ -87,58 +87,67 @@ namespace Zelda.Components.Items
             {
                     case BoomerangState.Forward:
                         MoveForward(sprite);
-                        if(_counter > 300)
+                        if (_counter > 300)
+                        {
                             _currentState = BoomerangState.Back;
-                    break;
+                        }
+
+                        break;
 
                     case BoomerangState.Back:
-                        MoveBack(sprite); 
-                    break; 
+                        MoveBack(sprite);
+                        break;
             }
         }
-
 
         private void CheckCollision()
         {
-            BaseObject outBaseObject;
             var sprite = GetComponent<Sprite>();
-            Animation outAnimation;
-            if (_entities.CheckCollision(sprite.Rectangle, out outAnimation, out outBaseObject, Owner.GetOwnerId()))
+            if (_entities.CheckCollision(sprite.Rectangle, out var outAnimation, out var outBaseObject, Owner.GetOwnerId()))
             {
                 var statusEffect = outBaseObject.GetComponent<StatusEffect>();
-                if(statusEffect != null)
-                    statusEffect.AddStatusEffect(new StatusEffectFreeze(outBaseObject));
+                statusEffect?.AddStatusEffect(new StatusEffectFreeze(outBaseObject));
                 _currentState = BoomerangState.Back;
                 _counter = 0;
-                _alreadyHitObject = true; 
+                _alreadyHitObject = true;
             }
         }
 
-
         private void MoveBack(Sprite sprite)
         {
-            var ownerSprite = Owner.GetComponent<Sprite>(); 
-            if(ownerSprite == null)
-            {
-                _currentState = BoomerangState.Stop;
-                Active = false; 
-            }
-
-            if(ManagerFunction.Distance(sprite.Position,ownerSprite.Position) < 2)
+            var ownerSprite = Owner.GetComponent<Sprite>();
+            if (ownerSprite == null)
             {
                 _currentState = BoomerangState.Stop;
                 Active = false;
-                return; 
             }
 
-            if(ownerSprite.Position.X < sprite.Position.X)
-                sprite.Move(-1*_speed,0);
+            if (ManagerFunction.Distance(sprite.Position, ownerSprite.Position) < 2)
+            {
+                _currentState = BoomerangState.Stop;
+                Active = false;
+                return;
+            }
+
+            if (ownerSprite.Position.X < sprite.Position.X)
+            {
+                sprite.Move(-1 * _speed, 0);
+            }
+
             if (ownerSprite.Position.X > sprite.Position.X)
+            {
                 sprite.Move(_speed, 0);
+            }
+
             if (ownerSprite.Position.Y < sprite.Position.Y)
-                sprite.Move(0, -1*_speed);
+            {
+                sprite.Move(0, -1 * _speed);
+            }
+
             if (ownerSprite.Position.Y > sprite.Position.Y)
+            {
                 sprite.Move(0, _speed);
+            }
         }
 
         private void MoveForward(Sprite sprite)
@@ -149,7 +158,7 @@ namespace Zelda.Components.Items
             switch (_currentDirection)
             {
                 case Direction.Up:
-                    y = -1*_speed;
+                    y = -1 * _speed;
                     break;
 
                 case Direction.Down:
@@ -157,7 +166,7 @@ namespace Zelda.Components.Items
                     break;
 
                 case Direction.Left:
-                    x = -1*_speed;
+                    x = -1 * _speed;
                     break;
 
                 case Direction.Right:
@@ -165,25 +174,21 @@ namespace Zelda.Components.Items
                     break;
                 default:
                     return;
-
             }
 
             if (_currentState == BoomerangState.Forward)
             {
                 var collision = GetComponent<Collision>();
-                if(collision != null && collision.CheckCollisionWithTiles(new Rectangle((int) (sprite.Position.X + x), (int) (sprite.Position.Y + y),sprite.Width,sprite.Height)))
+                if (collision != null && collision.CheckCollisionWithTiles(new Rectangle((int)(sprite.Position.X + x), (int)(sprite.Position.Y + y), sprite.Width, sprite.Height)))
                 {
                     _currentState = BoomerangState.Back;
-                    _counter = 0; 
+                    _counter = 0;
                 }
                 else
                 {
-                    sprite.Move(x,y);
+                    sprite.Move(x, y);
                 }
             }
         }
     }
 }
-
-
-

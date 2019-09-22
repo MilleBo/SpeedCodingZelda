@@ -1,21 +1,17 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace Zelda.GameEvent
 {
-    interface IGameEvent
+    public interface IGameEvent
     {
         bool Done { get; set; }
+
         GameEventType EventType { get; }
+
         void Initialize();
-        void Update(double gameTime);      
+
+        void Update(double gameTime);
+
         void Draw(SpriteBatch spriteBatch);
     }
 }
-

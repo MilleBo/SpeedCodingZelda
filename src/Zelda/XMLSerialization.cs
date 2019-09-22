@@ -1,11 +1,4 @@
-﻿//------------------------------------------------------
-// 
-// Copyright - (c) - 2014 - Mille Boström 
-//
-// Youtube channel - http://www.speedcoding.net
-//------------------------------------------------------
-
-using System;
+﻿using System;
 using System.IO;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
@@ -17,21 +10,12 @@ namespace Zelda
         public static bool LoadXML<T>(out T theObject, string path)
         {
             theObject = default(T);
-            try
+            using (var stream = TitleContainer.OpenStream(path))
             {
-                using(var stream = TitleContainer.OpenStream(path))
-                {
-                    var serializer = new XmlSerializer(typeof (T));
-                    theObject = (T) serializer.Deserialize(stream);
-                    return true; 
-                }
+                var serializer = new XmlSerializer(typeof(T));
+                theObject = (T)serializer.Deserialize(stream);
+                return true;
             }
-            catch (Exception)
-            {        
-                throw;
-            }
-
-            return false; 
         }
 
         public static bool SaveXML<T>(T theObject, string path)
@@ -40,12 +24,12 @@ namespace Zelda
             try
             {
                 stream = new FileStream(path, FileMode.Create);
-                var serialize = new XmlSerializer(typeof (T));
+                var serialize = new XmlSerializer(typeof(T));
                 serialize.Serialize(stream, theObject);
             }
             catch (Exception)
             {
-                return false; 
+                return false;
             }
             finally
             {
@@ -55,8 +39,4 @@ namespace Zelda
             return true;
         }
     }
-
-   
 }
-
-
