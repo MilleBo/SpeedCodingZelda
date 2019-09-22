@@ -1,5 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Threading;
+using Microsoft.AspNet.SignalR.Client;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Zelda.Common.Requests;
 using Zelda.Factories;
 using Zelda.Manager;
 using Zelda.Screens;
@@ -40,6 +43,20 @@ namespace Zelda
         protected override void Initialize()
         {
             FactoryStats.Initialize();
+
+            var connection = new HubConnection("http://localhost:8080");
+            var characterMoveHub = connection.CreateHubProxy("gameHub");
+            characterMoveHub.On("hello", () =>
+            {
+                var i = 0;
+                i++;
+            });
+
+            connection.Start();
+
+            Thread.Sleep(2000);
+
+            characterMoveHub.Invoke("Login", new LoginRequest { Name = "bugu" });
             base.Initialize();
         }
 
